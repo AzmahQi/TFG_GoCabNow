@@ -2,19 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  PALLET
+  dark #000814  rgb(0,8,20)
+  primary  #001D3D  rgb(0,29,61)
+  secondary #003566  rgb(0,53,102)
+  #FFC300  rgb(255,195,0)
+  #FFD60A  rgb(255,214,10)
+  */
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+
+  --text-light: 255, 255, 255;
+  --text-dark: 0, 0, 0;
+
+  --primary-bg-rgb:0,29,61;
+  --primary-text-rgb:var(--text-light);
+
+  --secondary-bg-rgb:0,53,102;
+  --secondary-text-rgb:var(--text-light);
+
+  --dark-bg-rgb:0,8,20;
+  --dark-text-rgb:var(--text-light);
+  
 }
 
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
+.primary{
+  background: rgb(var(--primary-bg-rgb));
+  color: rgb(var(--primary-text-rgb));
+}
+.secondary{
+  background: rgb(var(--secondary-bg-rgb));
+  color: rgb(var(--secondary-text-rgb));
+}
+.text-light{
+  color: rgb(var(--text-light));
+}
+.text-dark{
+  color: rgb(var(--text-dark));
 }

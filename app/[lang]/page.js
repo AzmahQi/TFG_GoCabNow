@@ -1,15 +1,24 @@
 import { getDictionary } from '@/get-dictionary'
+import Navbar from './components/navbar'
+import { BigHero } from './components/bighero'
+import Footer from './components/footer'
 import { Locale } from '@/i18n-config'
+import '@/app/styles/main.css'
+
+
 export default async function Home({ params: { lang } }) {
 
   const dictionary = await getDictionary(lang)
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <h1>Home</h1>
-
-        <p>{dictionary.hi}</p>
-      </div>
-    </main>
-  )
+    <>
+      <header>
+        <Navbar />
+      </header>
+      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+        <BigHero base={dictionary} content={dictionary.bighero}/>
+        
+      </main>
+      <Footer />
+    </>
+  );
 }

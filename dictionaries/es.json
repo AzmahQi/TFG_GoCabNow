@@ -1,1 +1,10 @@
-{"hi": "Hola Mundo"}
+{   
+    "companyName": "GoCabNow",
+    "bighero" : {
+        "title": "Bienvenido a $companyName$",
+        "description": "description goes here",
+        "button": "click me",
+        "tagline": "tag line goes here",
+        "know": "About us"
+    }
+}
