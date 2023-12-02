@@ -1,5 +1,5 @@
 import { getDictionary } from '@/get-dictionary'
-import Navbar from './components/navbar'
+import Navbar from '@/app/[lang]/components/navbar'
 import { BigHero } from './components/bighero'
 import Footer from './components/footer'
 import { Locale } from '@/i18n-config'

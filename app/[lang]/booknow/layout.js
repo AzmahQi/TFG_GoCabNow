@@ -1,10 +1,7 @@
-const roboto = Roboto({
-    subsets: ['latin'],
-    weight: '300',
-  })
+
   
   export const metadata = {
-    title: 'Dashboard | TFG',
+    title: 'BookNow | TFG',
     description: 'HAMZA',
   }
   

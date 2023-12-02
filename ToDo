@@ -7,11 +7,13 @@ Legend:
 [X] Build the project to start working
 [X] Start with the dictionaries and translation of the page MAIN LANG: English and Spanish (JUST MAKE IT WORK)
 [X] Do some preparation to start working on the mane page (define pallet, fonts, etc.)
-[~] Build the structure of the main PAGE
-[~] Build the structure of the Dashboard PAGE
+[X] Build the structure of the main PAGE
+[] Build the structure of the Dashboard PAGE
+[X] Start with the logic (Booking) DEMO
+[] Connect with the MySQL
+[] Start with the login system (JUST MAKE IT WORK)
 [] Gather some opinions about the page
 [] Do the changes needed, after the feedback
-[] Start with the logic (Booking)
-[] Start with the login system (JUST MAKE IT WORK)
+
 [] ...
 ###########################################################################
