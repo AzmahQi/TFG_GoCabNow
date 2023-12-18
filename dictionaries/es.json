@@ -1,10 +1,87 @@
 {   
+    "lang": "ES",
     "companyName": "GoCabNow",
+    "navigation":{
+        "menu":[
+            { "name": "Portada", "href": "/", "current": true }
+          ],
+          "profileMenu":[
+            { "name": "Dashboard", "href": "/dashboard", "current": true },
+            { "name": "Profile", "href": "/dashboard/profile", "current": true },
+            { "name": "Sing Out", "href": "logout", "current": true }
+          ]
+    },
     "bighero" : {
         "title": "Bienvenido a $companyName$",
         "description": "description goes here",
         "button": "click me",
         "tagline": "tag line goes here",
         "know": "About us"
-    }
+    },
+    "register": {
+        "title": "Registrarse",
+        "name": "Nombre",
+        "contactNumber": "Número de contacto (WhatsApp requerido)",
+        "email": "Correo electrónico",
+        "password": "Contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "buttonText": "Registrarse",
+        "haveAccount": "¿Ya tienes una cuenta? Iniciar sesión"
+      },
+      "errors": {
+        "required": " es obligatorio",
+        "invalidEmail": "Formato de correo electrónico no válido",
+        "passwordMismatch": "Las contraseñas no coinciden"
+      },
+      "features":{
+        "title":"Características",
+      "featuresList": [
+        {
+          "title": "Proceso de Reserva Fácil",
+          "description": "Destacando la simplicidad de reservar un viaje con GoCabNow.",
+          "icon": "🚖"
+        },
+        {
+          "title": "Servicio Seguro y Confiable",
+          "description": "Enfatizando la seguridad y confiabilidad de nuestro servicio de taxi.",
+          "icon": "🛡️"
+        },
+        {
+          "title": "Soporte al Cliente 24/7",
+          "description": "Garantizando a los usuarios que el soporte al cliente está disponible todo el día.",
+          "icon": "🕒"
+        },
+        {
+          "title": "Preferencias Personalizables",
+          "description": "Permitiendo a los usuarios personalizar sus preferencias de viaje para una experiencia personalizada.",
+          "icon": "⚙️"
+        },
+        {
+          "title": "Programa de Recompensas y Lealtad",
+          "description": "Destacando nuestro programa de lealtad y cómo los usuarios pueden beneficiarse de viajes frecuentes.",
+          "icon": "🎁"
+        },
+        {
+          "title": "Iniciativas Ambientales",
+          "description": "Destacando nuestro compromiso con la sostenibilidad con opciones ecológicas.",
+          "icon": "🌿"
+        }
+      ]},
+      "testimonials": {
+        "title": "Testimonios",
+        "testimonialsList": [
+          {
+            "name": "Juan Pérez",
+            "comment": "¡Me encanta usar GoCabNow! El servicio es rápido, confiable y los conductores siempre son amigables."
+          },
+          {
+            "name": "Ana Gómez",
+            "comment": "Reservar un viaje con GoCabNow es muy conveniente. La aplicación es fácil de usar y los conductores son profesionales."
+          },
+          {
+            "name": "Carlos Rodríguez",
+            "comment": "Aprecio el soporte al cliente 24/7. Me da tranquilidad saber que la ayuda está a solo una llamada de distancia."
+          }
+        ]
+      }
 }

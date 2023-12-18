@@ -4,7 +4,6 @@
 'use client'
 // This component will control the steps by steps
 
-import { useEffect, useState } from "react";
 import StepA from "./StepA";
 import StepB from "./StepB";
 import StepC from "./StepC";
@@ -13,12 +12,15 @@ import StepFinal from "./StepFinal";
 
 
 
+
+
+
 // Step 1: Recollecting client info
 // Step 2: Recollecting reservation info
 // Step 3: Review the info
 // Step 4: Confirmation of sending the info to show reservation id
 
-
+import { useState, useEffect } from "react";
 const initialFormData = {
 
     firstName: '',
@@ -40,6 +42,8 @@ export default function BookingManager({ showSteps }) {
     const [step, setStep] = useState('A');
     const [formData, setFormData] = useState(initialFormData);
 
+
+
     // Method to handle to go to the next step
     const handleNextStep = () => {
       console.log("in: "+step)
@@ -58,7 +62,7 @@ export default function BookingManager({ showSteps }) {
         if (step === 'C') setStep('B');
         else if (step == 'B') setStep('A');
     };
-    
+
     // Method to update our formData, also to manipulate it
     const handleChangeInput = (event) => {
         const fieldName = event.target.name;
@@ -82,7 +86,6 @@ export default function BookingManager({ showSteps }) {
           setStep('Final');
         }
 
-        
     };
 
     // To see the actual changes irl
@@ -129,6 +132,7 @@ export default function BookingManager({ showSteps }) {
               handleNextStep={handleNextStep}
             />
           ) : null}
+
           {step === 'B' ? (
             <StepB
             formData={formData}
@@ -137,6 +141,7 @@ export default function BookingManager({ showSteps }) {
               handleNextStep={handleNextStep}
             />
           ) : null}
+
           {step === 'C' ? (
             <StepC
             formData={formData}
@@ -145,7 +150,7 @@ export default function BookingManager({ showSteps }) {
               handleSubmitFormData={handleSubmitFormData}
             />
           ) : null}
-          
+
           {step === "Final" ? <StepFinal /> : null}
         </div>
       </>

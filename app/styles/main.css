@@ -1,0 +1,17 @@
+.primary {
+  background: rgb(var(--primary-bg-rgb));
+  color: rgb(var(--primary-text-rgb));
+}
+
+.secondary {
+  background: rgb(var(--secondary-bg-rgb));
+  color: rgb(var(--secondary-text-rgb));
+}
+
+.text-light {
+  color: rgb(var(--text-light));
+}
+
+.text-dark {
+  color: rgb(var(--text-dark));
+}

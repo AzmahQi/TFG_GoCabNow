@@ -1,10 +1,85 @@
-{   
+{   "lang": "EN",
     "companyName": "GoCabNow",
+    "navigation":{
+        "menu":[
+            { "name":"Home", "href": "/", "current": true }
+          ],
+          "profileMenu":[
+            { "name": "Dashboard", "href": "/dashboard", "current": true },
+            { "name": "Profile", "href": "/dashboard/profile", "current": true },
+            { "name": "Sing Out", "href": "logout", "current": true }
+          ]
+    },
     "bighero" : {
         "title": "Welcome to $companyName$",
         "description": "description goes here",
         "button": "click me",
         "tagline": "tag line goes here",
         "know": "About us"
-    }
+    },
+    "register": {
+        "title": "Register",
+        "name": "Name",
+        "contactNumber": "Contact Number (WhatsApp required)",
+        "email": "Email",
+        "password": "Password",
+        "confirmPassword": "Confirm Password",
+        "buttonText": "Register",
+        "haveAccount": "Already have an account? Login"
+      },
+      "errors": {
+        "required": " is required",
+        "invalidEmail": "Invalid email format",
+        "passwordMismatch": "Passwords do not match"
+      },
+      "features":{
+        "title":"Features",
+      "featuresList": [
+        {
+          "title": "Easy Booking Process",
+          "description": "Highlighting the simplicity of booking a ride with GoCabNow.",
+          "icon": "🚖"
+        },
+        {
+          "title": "Secure and Reliable Service",
+          "description": "Emphasizing the safety and reliability of our taxi service.",
+          "icon": "🛡️"
+        },
+        {
+          "title": "24/7 Customer Support",
+          "description": "Assuring users that customer support is available around the clock.",
+          "icon": "🕒"
+        },
+        {
+          "title": "Customizable Preferences",
+          "description": "Allowing users to customize their ride preferences for a personalized experience.",
+          "icon": "⚙️"
+        },
+        {
+          "title": "Rewards and Loyalty Program",
+          "description": "Showcasing our loyalty program and how users can benefit from frequent rides.",
+          "icon": "🎁"
+        },
+        {
+          "title": "Environmental Initiatives",
+          "description": "Highlighting our commitment to sustainability with eco-friendly options.",
+          "icon": "🌿"
+        }
+      ]},
+      "testimonials":{
+        "title": "Testimonials",
+      "testimonialsList":[
+        {
+        "name": "John Doe",
+        "comment": "I love using GoCabNow! The service is quick, reliable, and the drivers are always friendly."
+      },
+      {
+        "name": "Jane Smith",
+        "comment": "Booking a ride with GoCabNow is so convenient. The app is user-friendly, and the drivers are professional."
+      },
+      {
+        "name": "Bob Johnson",
+        "comment": "I appreciate the 24/7 customer support. It gives me peace of mind knowing help is just a call away."
+      }
+    ]}
 }

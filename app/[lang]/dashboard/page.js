@@ -1,8 +1,17 @@
-import { Navigation } from "../components/navigation"
-import '@/app/styles/dashboard.css'
-export default function Dashboard() {
-    return (
-      <>
+import { getServerSession } from "next-auth";
+import { Navigation } from "../components/navigation";
+import { getDictionary } from "@/get-dictionary";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { redirect } from "next/navigation";
+import "@/app/styles/dashboard.css";
+export default async function Dashboard({ params: { lang } }) {
+  const dictionary = await getDictionary(lang);
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    redirect("/api/auth/signin");
+  }
+  return (
+    <>
       <header>
         <Navigation />
       </header>
@@ -11,6 +20,6 @@ export default function Dashboard() {
           <h1 className="h1">Dashboard</h1>
         </div>
       </main>
-      </>
-    )
-  }
+    </>
+  );
+}

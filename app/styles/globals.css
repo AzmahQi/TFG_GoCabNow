@@ -9,16 +9,28 @@
   secondary #003566  rgb(0,53,102)
   #FFC300  rgb(255,195,0)
   #FFD60A  rgb(255,214,10)
+
+
+    "primary": $primary-text-emphasis,
+  "secondary": $secondary-text-emphasis,
+  "success": $success-text-emphasis,
+  "info": $info-text-emphasis,
+  "warning": $warning-text-emphasis,
+  "danger": $danger-text-emphasis,
+  "light": $light-text-emphasis,
+  "dark": $dark-text-emphasis,
   */
 :root {
 
   --text-light: 255, 255, 255;
   --text-dark: 0, 0, 0;
-
+ 
   --primary-bg-rgb:0,29,61;
   --primary-text-rgb:var(--text-light);
+  
 
   --secondary-bg-rgb:0,53,102;
+  --primary-text-emphasis:var(--secondary-bg-rgb);
   --secondary-text-rgb:var(--text-light);
 
   --dark-bg-rgb:0,8,20;
@@ -28,17 +40,3 @@
 
 
 
-.primary{
-  background: rgb(var(--primary-bg-rgb));
-  color: rgb(var(--primary-text-rgb));
-}
-.secondary{
-  background: rgb(var(--secondary-bg-rgb));
-  color: rgb(var(--secondary-text-rgb));
-}
-.text-light{
-  color: rgb(var(--text-light));
-}
-.text-dark{
-  color: rgb(var(--text-dark));
-}

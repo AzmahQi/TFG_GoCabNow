@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server"
-
 import { i18n } from "./i18n-config"
-
 import { match as matchLocale } from "@formatjs/intl-localematcher"
 import Negotiator from "negotiator"
+export { default } from "next-auth/middleware"
+
+
 
 function getLocale(request) {
   // Negotiator expects plain object so we need to transform headers
@@ -48,6 +49,7 @@ export function middleware(request) {
 
     // e.g. incoming request is /products
     // The new URL is now /en-US/products
+    console.log("middle:"+pathname)
     return NextResponse.redirect(
       new URL(
         `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-    webpack(config) {
-        return config;
+      experimental: {
+        serverComponentsExternalPackages: ['@prisma/client','bcrypt']
       }
 }
 module.exports = nextConfig
