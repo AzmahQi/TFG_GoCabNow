@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function Layout({ children, params }) {
   return (
-    <html lang={params.lang} className={roboto.className}>
+    <html lang={params.lang} className={roboto.className + " scroll-smooth"}>
       {children}
     </html>
   );

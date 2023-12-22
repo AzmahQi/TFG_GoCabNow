@@ -5,7 +5,7 @@ import BookNow from '@/app/[lang]/booknow/page'
 export function BigHero( {base, content} ) {
 
   return (
-    <div className="relative shadow-inner isolate px-6 pt-14 lg:px-8 w-full">
+    <div id='home' className="relative shadow-inner isolate px-6 pt-14 lg:px-8 w-full">
       <div
         className="absolute inset-x-0 top-1 -z-10 transform-gpu overflow-hidden blur-3xl sm:top-2"
         aria-hidden="true"
@@ -37,9 +37,14 @@ export function BigHero( {base, content} ) {
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Modal
-               triggerElement={<Button size="small" color="danger" className="ml-4">Book Now</Button>}
-               modalContent={<BookNow/>}
-               buttonText="Close" />
+              triggerElement={
+                <Button color="primary" className="ml-4">
+                  Book Now
+                </Button>
+              }
+              modalContent={<BookNow />}
+              buttonText="Close"
+            />
           </div>
         </div>
       </div>

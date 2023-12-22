@@ -45,15 +45,15 @@ export function Modal({ triggerElement, modalContent, buttonText }) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="fixed inset-0 flex items-center justify-center">
-                <div className="p-6 rounded-2xl w-full max-w-md text-left shadow-xl">
+              <Dialog.Panel className="fixed flex items-center justify-center">
+                <div className="bg-blue-950 p-6 rounded-lg w-full max-w-md text-left">
                   {modalContent}
 
-                  <div className="mt-4">
+                  <div className="mt-4 items-center">
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="text-gray-500 hover:text-gray-700 focus:outline-none"
+                      className="text-gray-300 p-1 ring ring-gray-500 rounded-full hover:text-gray-700 focus:ring-gray-700"
                     >
                       <span className="sr-only">Close</span>
                       <svg
@@ -90,9 +90,9 @@ size === 'small'
 const colorClasses = (() => {
 switch (color) {
   case 'primary':
-    return 'bg-blue-500 hover:bg-blue-600 focus:border-blue-300';
+    return 'bg-blue-600 shadow-lg hover:bg-blue-500 focus:border-blue-900';
   case 'secondary':
-    return 'bg-gray-500 hover:bg-gray-600 focus:border-gray-300';
+    return 'bg--500 hover:bg-gray-600 focus:border-gray-300';
   case 'success':
     return 'bg-green-500 hover:bg-green-600 focus:border-green-300';
   case 'danger':

@@ -3,12 +3,17 @@
     "companyName": "GoCabNow",
     "navigation":{
         "menu":[
-            { "name": "Portada", "href": "/", "current": true }
+            { "name": "Inicio", "href": "/", "id":"home" },
+            { "name":"Estadísticas", "href": "/#stats", "id":"stats" },
+            { "name":"Características", "href": "/#features", "id":"features" },
+            { "name":"Testimonios", "href": "/#testimonials", "id":"testimonials" },
+            { "name":"FAQs", "href": "/#faqs", "id":"faqs" },
+            { "name":"Sobre Nosotros", "href": "/#aboutUs", "id":"aboutUs" }
           ],
           "profileMenu":[
-            { "name": "Dashboard", "href": "/dashboard", "current": true },
-            { "name": "Profile", "href": "/dashboard/profile", "current": true },
-            { "name": "Sing Out", "href": "logout", "current": true }
+            { "name": "Dashboard", "href": "/dashboard" },
+            { "name": "Profile", "href": "/dashboard/profile" },
+            { "name": "Sing Out", "href": "logout" }
           ]
     },
     "bighero" : {
@@ -83,5 +88,102 @@
             "comment": "Aprecio el soporte al cliente 24/7. Me da tranquilidad saber que la ayuda está a solo una llamada de distancia."
           }
         ]
+      },
+      "aboutUs": {
+        "title": "Sobre Nosotros",
+        "sections": [
+          {
+            "heading": "¡Bienvenido a GoCabNow!",
+            "paragraphs": [
+              "Tu socio confiable en transporte sin complicaciones.",
+              "Nos dedicamos a proporcionar servicios de reserva de taxis sin problemas que priorizan tu comodidad y conveniencia."
+            ]
+          },
+          {
+            "heading": "Nuestra Historia",
+            "paragraphs": [
+              "Fundada con la pasión de simplificar los viajes.",
+              "Comenzó como una visión para redefinir cómo las personas experimentan el transporte.",
+              "Superando desafíos y alimentados por la innovación, nos hemos convertido en un nombre de confianza en la industria."
+            ]
+          },
+          {
+            "heading": "Equipo de Expertos",
+            "paragraphs": [
+              "Conoce a los rostros detrás de GoCabNow, un equipo dinámico comprometido a brindar un servicio excepcional.",
+              "Nuestra diversa experiencia garantiza un viaje sin problemas para cada pasajero."
+            ]
+          },
+          {
+            "heading": "Misión y Valores",
+            "paragraphs": [
+              "Nuestra misión es simple: hacer que tus viajes sean agradables, seguros y sin estrés.",
+              "Valoramos la confiabilidad, la eficiencia y la satisfacción del cliente por encima de todo."
+            ]
+          },
+          {
+            "heading": "¿Por qué elegir GoCabNow?",
+            "paragraphs": [
+              "App Fácil de Usar: Nuestra aplicación intuitiva garantiza una reserva fácil y una experiencia sin problemas.",
+              "Seguridad Primero: Priorizamos tu seguridad con estándares y medidas rigurosas.",
+              "Innovación: Mantente a la vanguardia con nuestra tecnología de vanguardia, mejorando tu comodidad de viaje."
+            ]
+          },
+          {
+            "heading": "Compromiso Comunitario",
+            "paragraphs": [
+              "Más allá del transporte, nos involucramos activamente y contribuimos a las comunidades que servimos.",
+              "GoCabNow es más que un viaje; es un compromiso con asociaciones y proyectos locales."
+            ]
+          },
+          {
+            "heading": "Contáctanos",
+            "paragraphs": [
+              "¿Tienes preguntas o necesitas ayuda? Comunícate con nosotros en cualquier momento.",
+              "Estamos aquí para ti."
+            ]
+          },
+          {
+            "heading": "Tu Viaje Comienza",
+            "paragraphs": [
+              "Tu viaje comienza con GoCabNow, donde cada viaje es suave y placentero."
+            ]
+          }
+        ]
+      },
+       "faqsSection" :{ "title": "FAQs",
+        "faqs": [
+          {
+            "question": "¿Cómo reservo un taxi con GoCabNow?",
+            "answer": "¡Reservar un taxi con GoCabNow es fácil! Simplemente descarga nuestra aplicación, inicia sesión o crea una cuenta, ingresa tus ubicaciones de recogida y entrega, elige tu tipo de vehículo preferido y confirma tu reserva. Recibirás confirmación instantánea y detalles de tu conductor."
+          },
+          {
+            "question": "¿Qué tipos de vehículos están disponibles en GoCabNow?",
+            "answer": "GoCabNow ofrece una variedad de vehículos para satisfacer tus necesidades, incluyendo autos estándar, SUV y opciones premium. Puedes elegir el tipo de vehículo que mejor se adapte a tus requisitos y preferencias."
+          },
+          {
+            "question": "¿Cómo puedo rastrear mi taxi reservado?",
+            "answer": "Una vez que hayas reservado tu taxi, puedes rastrear fácilmente su ubicación en tiempo real a través de la aplicación GoCabNow. La aplicación proporciona actualizaciones en vivo sobre la ubicación de tu conductor, el tiempo estimado de llegada y otros detalles del viaje."
+          },
+          {
+            "question": "¿Hay diferentes opciones de pago disponibles?",
+            "answer": "Sí, GoCabNow admite diversas opciones de pago, incluyendo tarjetas de crédito/débito, billeteras móviles y efectivo. Puedes elegir el método de pago que sea más conveniente para ti."
+          },
+          {
+            "question": "¿Qué medidas de seguridad se implementan para los pasajeros?",
+            "answer": "En GoCabNow, tu seguridad es nuestra principal prioridad. Nuestros conductores pasan por exhaustivas verificaciones de antecedentes y todos los vehículos se inspeccionan regularmente. Además, la aplicación proporciona detalles esenciales del viaje, incluyendo el nombre del conductor, foto y detalles del vehículo, garantizando una experiencia segura y confiable."
+          },
+          {
+            "question": "¿Puedo programar un taxi para una fecha y hora futuras?",
+            "answer": "¡Absolutamente! GoCabNow te permite programar un taxi para una fecha y hora específicas con anticipación. Simplemente selecciona la opción \"Programar Viaje\" en la aplicación y elige tu fecha y hora preferidas."
+          },
+          {
+            "question": "¿Qué debo hacer si necesito cancelar mi reserva?",
+            "answer": "Puedes cancelar fácilmente tu reserva a través de la aplicación GoCabNow. Ten en cuenta que podría haber una tarifa de cancelación dependiendo del momento de la cancelación, por lo que es recomendable verificar la política de cancelación."
+          }
+        ]
+      },
+      "footer": {
+        "copyright": "2023 GoCabNow. Todos los derechos reservados."
       }
 }

@@ -1,12 +1,12 @@
 'use client'
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
-//import { useToast } from "@/components/ui/use-toast"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 export default function LoginForm  () {
-  //const { toast } = useToast()
+
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -66,31 +66,55 @@ export default function LoginForm  () {
 
     if (validateForm()) {
       setIsLoading(true);
-
       // Perform your login logic here using formData.email and formData.password
       const signInData = await signIn('credentials',{redirect: false, email: formData.email, password: formData.password})
-      console.log(signInData);
 
-      if (!signInData?.error){
-        console.log(signInData.error)
-      }else {
+      if (signInData.ok){
         router.refresh();
-        router.push('/dashboard')
+        toast.success('Sign in correctly', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+          router.back();
+        
+      } else if (signInData?.error) {
+        setIsLoading(false);
+        toast.error('Wrong email or password.', {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
       }
-      console.log('Login form submitted with:', formData);
-      // Reset form after submission
-
+      
+      
     }else{
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your request."
-      })
+      toast.error('Uh oh! Something went wrong.', {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
     }
   };
 
   return (
-    
+    <>
     <div className="flex items-center justify-center h-screen">
       <div className="bg-white p-8 shadow-md rounded-md w-96">
         <h2 className="text-2xl text-black font-semibold mb-4">Login</h2>
@@ -144,6 +168,7 @@ export default function LoginForm  () {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

@@ -12,19 +12,15 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "Login | TFG",
+  title: "Register | TFG",
   description: "HAMZA",
 };
 
 export default function Layout({ children, params }) {
   return (
-    <>
-    <html >
-      <div>{children}</div>
-      
-      <div><ToastContainer /></div>
-      
+    <html lang={params.lang} className={roboto.className}>
+      {children}
+      <ToastContainer />
     </html>
-    </>
   );
 }

@@ -2,12 +2,17 @@
     "companyName": "GoCabNow",
     "navigation":{
         "menu":[
-            { "name":"Home", "href": "/", "current": true }
+            { "name":"Home", "href": "/", "id":"home" },
+            { "name":"Stats", "href": "/#stats", "id":"stats" },
+            { "name":"Features", "href": "/#features", "id":"features" },
+            { "name":"Testimonials", "href": "/#testimonials", "id":"testimonials" },
+            { "name":"FAQs", "href": "/#faqs" , "id":"faqs"},
+            { "name":"About Us", "href": "/#aboutUs", "id":"aboutUs" }
           ],
           "profileMenu":[
-            { "name": "Dashboard", "href": "/dashboard", "current": true },
-            { "name": "Profile", "href": "/dashboard/profile", "current": true },
-            { "name": "Sing Out", "href": "logout", "current": true }
+            { "name": "Dashboard", "href": "/dashboard"},
+            { "name": "Profile", "href": "/dashboard/profile"},
+            { "name": "Sign Out", "href": "logout" }
           ]
     },
     "bighero" : {
@@ -81,5 +86,121 @@
         "name": "Bob Johnson",
         "comment": "I appreciate the 24/7 customer support. It gives me peace of mind knowing help is just a call away."
       }
-    ]}
-}
+    ]},
+    "aboutUs": {
+      "title": "About Us",
+      "sections": [
+        {
+          "heading": "Welcome to GoCabNow!",
+          "paragraphs": [
+            "Your reliable partner in hassle-free transportation.",
+            "Dedicated to providing seamless taxi booking services prioritizing your comfort and convenience."
+          ]
+        },
+        {
+          "heading": "Our Story",
+          "paragraphs": [
+            "Founded with a passion for simplifying travel.",
+            "Started as a vision to redefine how people experience transportation.",
+            "Overcoming challenges and fueled by innovation, we've grown into a trusted name in the industry."
+          ]
+        },
+        {
+          "heading": "Team of Experts",
+          "paragraphs": [
+            "Meet the faces behind GoCabNow—a dynamic team committed to delivering exceptional service.",
+            "Our diverse expertise ensures a smooth journey for every passenger."
+          ]
+        },
+        {
+          "heading": "Mission and Values",
+          "paragraphs": [
+            "Our mission is simple—making your journeys enjoyable, safe, and stress-free.",
+            "We value reliability, efficiency, and customer satisfaction above all."
+          ]
+        },
+        {
+          "heading": "Why Choose GoCabNow",
+          "paragraphs": [
+            "User-Friendly App: Our intuitive app ensures easy booking and a seamless experience.",
+            "Safety First: We prioritize your safety with rigorous standards and measures in place.",
+            "Innovation: Stay ahead with our cutting-edge technology, enhancing your travel convenience."
+          ]
+        },
+        {
+          "heading": "Community Engagement",
+          "paragraphs": [
+            "Beyond transportation, we actively engage with and contribute to the communities we serve.",
+            "GoCabNow is more than just a ride; it's a commitment to local partnerships and initiatives."
+          ]
+        },
+        {
+          "heading": "Contact Us",
+          "paragraphs": [
+            "Have questions or need assistance? Reach out to us anytime.",
+            "We're here for you."
+          ]
+        },
+        {
+          "heading": "Your Journey Begins",
+          "paragraphs": [
+            "Your journey begins with GoCabNow—where every ride is a smooth ride!"
+          ]
+        }
+      ]
+    },
+    "faqsSection":
+    { "title": "FAQs",
+      "faqs": [
+        {
+          "question": "How do I book a taxi using GoCabNow?",
+          "answer": "Booking a taxi with GoCabNow is easy! Simply download our app, sign in or create an account, enter your pick-up and drop-off locations, choose your preferred vehicle type, and confirm your booking. You'll receive instant confirmation and details of your driver."
+        },
+        {
+          "question": "What types of vehicles are available on GoCabNow?",
+          "answer": "GoCabNow offers a variety of vehicles to suit your needs, including standard cars, SUVs, and premium options. You can choose the vehicle type that best fits your requirements and preferences."
+        },
+        {
+          "question": "How can I track my booked taxi?",
+          "answer": "Once your taxi is booked, you can easily track its real-time location through the GoCabNow app. The app provides live updates on your driver's location, estimated time of arrival, and other trip details."
+        },
+        {
+          "question": "Are there different payment options available?",
+          "answer": "Yes, GoCabNow supports various payment options, including credit/debit cards, mobile wallets, and cash. You can choose the payment method that is most convenient for you."
+        },
+        {
+          "question": "What safety measures are in place for passengers?",
+          "answer": "At GoCabNow, your safety is our top priority. Our drivers undergo thorough background checks, and all vehicles are regularly inspected. Additionally, the app provides essential trip details, including the driver's name, photo, and vehicle details, ensuring a secure and reliable experience."
+        },
+        {
+          "question": "Can I schedule a taxi for a future date and time?",
+          "answer": "Absolutely! GoCabNow allows you to schedule a taxi for a specific date and time in advance. Simply select the \"Schedule Ride\" option in the app and choose your preferred date and time."
+        },
+        {
+          "question": "What should I do if I need to cancel my booking?",
+          "answer": "You can easily cancel your booking through the GoCabNow app. Please note that there might be a cancellation fee depending on the time of cancellation, so it's advisable to check the cancellation policy."
+        }
+      ]
+    },
+  "footer": {
+    "copyright": "2023 GoCabNow. All rights reserved."
+  },
+  "registerForm": {
+    "name":"Name",
+    "email":"Email",
+    "contactNumber": "Contact Number (WhatsApp required)",
+
+    "errors":[
+      {
+        "status": 409,
+        "message": "OPs ya existe este corre"
+      },
+      {
+        "status": 200,
+        "message": "Resgitro"
+      }
+    ]
+
+    
+    }
+  }

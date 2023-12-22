@@ -1,11 +1,15 @@
 .primary {
   background: rgb(var(--primary-bg-rgb));
   color: rgb(var(--primary-text-rgb));
+  -webkit-box-shadow: inset 0px 0px 9px 0px #000000; 
+  box-shadow: inset 0px 0px 9px 0px #000000;
 }
 
 .secondary {
   background: rgb(var(--secondary-bg-rgb));
   color: rgb(var(--secondary-text-rgb));
+  -webkit-box-shadow: 0px 0px 9px 0px #000000; 
+  box-shadow: 0px 0px 9px 0px #000000;
 }
 
 .text-light {
@@ -14,4 +18,23 @@
 
 .text-dark {
   color: rgb(var(--text-dark));
+}
+nav {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+
+  transition: transform 150ms ease-in-out;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+
+
+nav.nav-bar--hidden {
+  transform: translateY(-100%);
 }

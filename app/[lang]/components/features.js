@@ -6,7 +6,7 @@ const Features = ({ content }) => {
   const features = content;
 
   return (
-    <section className="secondary shadow-md px-6 py-16 w-full">
+    <section id='features' className="secondary shadow-md px-6 py-16 w-full">
       <div className="container mx-auto text-center">
         <h2 className="text-3xl font-bold mb-8">{features.title}</h2>
 

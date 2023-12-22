@@ -6,6 +6,7 @@ import { i18n } from '../../../i18n-config'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
+
 export default function LocaleSwitcher() {
   const router = useRouter()
   const pathName = usePathname()
@@ -19,6 +20,7 @@ export default function LocaleSwitcher() {
     const newLocale = event.target.value;
     setSelectedLocale(newLocale);
     const newPath = redirectedPathName(newLocale);
+    router.refresh();
     router.push(newPath);
   };
 
@@ -32,13 +34,18 @@ export default function LocaleSwitcher() {
   return (
     <div>
      <select
-       className="border rounded-sm text-dark bg-white"
+       className="block py-1 my-1 py-0 mx-0  w-full text-sm text-gray-500 bg-transparent border-0 border-b-2 border-gray-200 dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200"
         value={selectedLocale}
         onChange={handleLanguageChange}
+        style={{
+          WebkitAppearance: 'none',
+          MozAppearance: 'none',
+          appearance: 'none',
+        }}
       >
        <option hidden>{selectedLocale.toUpperCase()}</option>
         {inactiveLocales.map((locale) => (
-          <option key={locale} value={locale}>
+          <option key={locale} value={locale} className="text-gray-600 hover:bg-gray-200">
             {locale.toUpperCase()}
           </option>
         ))}

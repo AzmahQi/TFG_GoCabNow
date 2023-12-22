@@ -1,65 +1,54 @@
-import { NextResponse } from "next/server"
-import { i18n } from "./i18n-config"
-import { match as matchLocale } from "@formatjs/intl-localematcher"
-import Negotiator from "negotiator"
-export { default } from "next-auth/middleware"
+import { NextResponse } from "next/server";
+import { i18n } from "./i18n-config";
+import { match as matchLocale } from "@formatjs/intl-localematcher";
+import Negotiator from "negotiator";
+export { default } from "next-auth/middleware";
 
-
-
+// Function to extract locale from request headers
 function getLocale(request) {
-  // Negotiator expects plain object so we need to transform headers
-  const negotiatorHeaders = {}
-  request.headers.forEach((value, key) => (negotiatorHeaders[key] = value))
+  // Transform request headers into a plain object
+  const negotiatorHeaders = Object.fromEntries(request.headers);
+  const locales = i18n.locales;
 
-  // @ts-ignore locales are readonly
-  const locales = i18n.locales
+  // Use negotiator and intl-localematcher to get the best locale
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
+  const locale = matchLocale(languages, locales, i18n.defaultLocale);
 
-  // Use negotiator and intl-localematcher to get best locale
-  let languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
-  )
-
-  const locale = matchLocale(languages, locales, i18n.defaultLocale)
-
-  return locale
+  return locale;
 }
 
+// Middleware for handling i18n and locale-based redirects
 export function middleware(request) {
-  const pathname = request.nextUrl.pathname
+  const pathname = request.nextUrl.pathname;
 
-  // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
-  // // If you have one
-  // if (
-  //   [
-  //     '/manifest.json',
-  //     '/favicon.ico',
-  //     // Your other files in `public`
-  //   ].includes(pathname)
-  // )
-  //   return
+  // Check if the current path is in the list of excluded paths
+  const isExcludedPath = [
+    '/manifest.json',
+    '/favicon.ico',
+    // Add other files in `public` if needed
+  ].some((excludedPath) => pathname === excludedPath);
 
-  // Check if there is any supported locale in the pathname
+  // If the path is excluded, return without further processing
+  if (isExcludedPath) {
+    return;
+  }
+
+  // Check if the current path is missing any supported locale prefix
   const pathnameIsMissingLocale = i18n.locales.every(
-    locale => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  )
+    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  );
 
-  // Redirect if there is no locale
+  // If the path is missing a locale prefix, redirect to the appropriate locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request)
+    const locale = getLocale(request);
 
-    // e.g. incoming request is /products
-    // The new URL is now /en-US/products
-    console.log("middle:"+pathname)
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`,
-        request.url
-      )
-    )
+    // Construct the redirected path with the detected locale
+    const redirectPath = `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`;
+    return NextResponse.redirect(new URL(redirectPath, request.url));
   }
 }
 
+// Configuration for the middleware, excluding specific paths from matching
 export const config = {
-  // Matcher ignoring `/_next/` and `/api/`
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"]
-}
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+};

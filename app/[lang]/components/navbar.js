@@ -1,12 +1,18 @@
 "use client";
 // Import necessary modules
+import { useState, useEffect } from 'react'
+import useScrollListener from '@/app/hooks/useScrollListener'
+import useSectionId from '@/app/hooks/sectionId';
+import ImageLoader from '@/app/hooks/imageLoader'
 import Link from "next/link";
 import { Modal, Button } from "@/app/ui/ui";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import LocaleSwitcher from "./locale-switcher";
 import { ProfileMenu } from "./navbarComponents";
+import Image from "next/image";
+import myLogo from "/public/img/logo.png"
 
 // Utility function for conditional CSS classes
 function classNames(...classes) {
@@ -18,9 +24,28 @@ export default function Navbar({ data, session }) {
   const navigation = data.menu;
   const profile = data.profileMenu;
   const router = useRouter();
-  console.log(JSON.stringify(session));
+  const [navClassList, setNavClassList] = useState([]);
+  const scroll = useScrollListener();
+  const path = usePathname();
+  const sectionIds = navigation.map((item) => item.id);
+  const currentSectionId = useSectionId(sectionIds);
+  // update classList of nav on scroll
+  useEffect(() => {
+    const _classList = [];
+
+    
+    if (scroll.y > 150 && scroll.y - scroll.lastY > 0)
+      _classList.push("nav-bar--hidden");
+
+    setNavClassList(_classList);
+  }, [scroll.y, scroll.lastY]);
+
   return (
-    <Disclosure as="nav" className="secondary">
+
+    <Disclosure
+      as="nav"
+      className={navClassList.join(" ") + " fixed top-0 z-10 w-full secondary"}
+    >
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -53,29 +78,33 @@ export default function Navbar({ data, session }) {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                
+                   <Image loader={ImageLoader} src={myLogo} width={60} height={60} alt="logo2"/>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-1">
                     {navigation.map((item) => (
-                      <a
+                      <Link
                         key={item.name}
-                        href={item.href}
+                        href={path + item.href}
+                        scroll={true}
                         className={classNames(
-                          router.asPath === item.href
-                            ? "bg-gray-900 text-white"
-                            : "text-gray-300 hover:bg-gray-700 hover:text-white",
-                          "rounded-md px-3 py-2 text-sm font-medium"
+                          currentSectionId === item.id
+                            ? "bg-[#001D3D] text-white"
+                            : "text-gray-300 hover:bg-[#000814] hover:text-white",
+                          "rounded-sm px-2 py-5 text-sm font-medium"
                         )}
                         aria-current={
-                          router.asPath === item.href ? "page" : undefined
+                          currentSectionId === item.id ? "page" : undefined
                         }
                       >
                         {item.name}
-                      </a>
+                      </Link>
                     ))}
                   </div>
                 </div>
+              </div>
+              <div>
+                <LocaleSwitcher />
               </div>
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                 {!session ? (
@@ -89,7 +118,6 @@ export default function Navbar({ data, session }) {
                 ) : (
                   <ProfileMenu profileMenu={profile} />
                 )}
-                <LocaleSwitcher />
               </div>
             </div>
           </div>
