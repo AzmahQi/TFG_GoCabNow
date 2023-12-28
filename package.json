@@ -14,10 +14,11 @@
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.4.2",
     "@headlessui/react": "^1.7.17",
-    "@heroicons/react": "^2.0.18",
+    "@heroicons/react": "^2.1.1",
     "@next-auth/prisma-adapter": "^0.4.4-canary.81",
     "@prisma/client": "^5.7.0",
     "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "formatjs": "^0.1.1",
     "negotiator": "^0.6.3",
     "next": "^14.0.4",
@@ -41,4 +42,3 @@
     "tailwindcss": "^3.3.5"
   }
 }
-

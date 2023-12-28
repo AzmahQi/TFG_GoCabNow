@@ -1,7 +1,10 @@
+'use client'
 import { Dialog, Transition } from '@headlessui/react';
 import { Fragment, useState, useRef, cloneElement } from 'react';
-
-
+import Image from "next/image";
+import ImageLoader from '@/app/hooks/imageLoader'
+import userImage from "/public/img/user.webp"
+import Logo from "/public/img/logo.webp"
 //modal
 export function Modal({ triggerElement, modalContent, buttonText }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,6 +96,8 @@ switch (color) {
     return 'bg-blue-600 shadow-lg hover:bg-blue-500 focus:border-blue-900';
   case 'secondary':
     return 'bg--500 hover:bg-gray-600 focus:border-gray-300';
+  case 'tertiary':
+    return 'tertiary hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl decoration-[#50d71e]'
   case 'success':
     return 'bg-green-500 hover:bg-green-600 focus:border-green-300';
   case 'danger':
@@ -113,6 +118,30 @@ switch (color) {
   );
 };
 
-
-
+export function DefaultUserImage (){
+  return(
+    <Image loader={ImageLoader} src={userImage} width={40} height={40} alt="user"/>
+  )
+}
+export function LogoImage (){
+  return(
+    <Image loader={ImageLoader} src={Logo} width={60} height={60} className="hover:scale-150 transition-all duration-500 cursor-pointer" alt="logo"/>
+  )
+}
+export function getStatusColors(status) {
+  switch (status) {
+    case 'PENDING':
+      return { text: 'text-yellow-500', bg: 'bg-yellow-100', hoverBg: 'hover:bg-yellow-200' };
+    case 'CONFIRMED':
+      return { text: 'text-green-500', bg: 'bg-green-100', hoverBg: 'hover:bg-green-200' };
+    case 'CANCELLED':
+      return { text: 'text-red-500', bg: 'bg-red-100', hoverBg: 'hover:bg-red-200' };
+    case 'FULFILLED':
+      return { text: 'text-blue-500', bg: 'bg-blue-100', hoverBg: 'hover:bg-blue-200' };
+    case 'CLOSED':
+      return { text: 'text-gray-500', bg: 'bg-gray-100', hoverBg: 'hover:bg-gray-200' };
+    default:
+      return { text: '', bg: '', hoverBg: '' };
+  }
+}
 

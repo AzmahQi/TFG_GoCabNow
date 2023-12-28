@@ -1,6 +1,7 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { signOut } from 'next-auth/react';
+import {DefaultUserImage } from '@/app/ui/ui'
 // Utility function for conditional CSS classes
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
@@ -14,7 +15,7 @@ function ProfileMenu({ profileMenu }) {
         <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span className="absolute -inset-1.5" />
           <span className="sr-only">Open user menu</span>
-          Profiles
+          <DefaultUserImage />
         </Menu.Button>
       </div>
       <Transition

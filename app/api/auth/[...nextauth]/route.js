@@ -1,14 +1,15 @@
-import { prisma } from "@/lib/prisma";
+import {getUserByEmail, getProfileByUserId, getRoleByUserId} from "@/lib/db";
 import { compare } from "bcrypt";
 import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const authOptions = NextAuth({
+export const authOptions ={
   pages:{
     signIn: '/login'
   },
   session :{
-    strategy: 'jwt'
+    strategy: 'jwt',
+    maxAge: 3 * 60 * 60,
   },
     providers: [
         CredentialsProvider({
@@ -24,11 +25,7 @@ export const authOptions = NextAuth({
               return null
             }
 
-            const user = await prisma.user.findUnique({
-              where: {
-                email: credentials.email
-              }
-            })
+            const user = await getUserByEmail (credentials.email)
 
             if (!user){
               return null
@@ -40,25 +37,27 @@ export const authOptions = NextAuth({
               return null
             }
 
+            // retrieve the name from the profile
+            const userProfile = await getProfileByUserId(user.id)
+            const userRole = await getRoleByUserId(user.id);
+
             return {
               id: `${user.id}`,
+              name: userProfile.name,
               email: user.email,
-              contactNumber: user.contactNumber,
-              randomKey: 'I can create more keys here if needed',
+              profile: userProfile,
+              role: userRole.permissionName
             }
-
-
           }
         })
       ],
       callbacks: {
-         
         async jwt ({token, user}){
-          console.log('JWT: ',{token, user})
+
           if (user) {
             return {
               ...token,
-              id: user.id
+              user
             }
           }
 
@@ -66,19 +65,19 @@ export const authOptions = NextAuth({
 
         },
         async session ({session,token}) {
-          console.log('Session: ',{session, token})
+
           return {
             ...session,
             user: {
-              ...session.user,
-              id: token.id,
-              email: token.email,
-              image: token.image
+              ...session,
+              profile: token.user.profile,
+              role: token.user.role
             }
           }
 
         }
       }
-})
+};
 
-export { authOptions as GET, authOptions as POST }
+const handler = NextAuth(authOptions)
+export { handler as GET, handler as POST }

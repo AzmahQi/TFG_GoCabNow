@@ -1,22 +1,22 @@
-'use client'
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
+"use client";
+import { signIn } from "next-auth/react";
 
-import React, { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useRouter } from "next/navigation";
 
-export default function LoginForm  () {
+import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
+export default function LoginForm({ data }) {
   const router = useRouter();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
 
   const [isLoading, setIsLoading] = useState(false);
@@ -30,7 +30,7 @@ export default function LoginForm  () {
     // Clear the error when the user starts typing
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: '',
+      [name]: "",
     }));
   };
 
@@ -40,19 +40,19 @@ export default function LoginForm  () {
 
     // Basic validation: Check if fields are not empty
     if (!formData.email.trim()) {
-      newErrors.email = 'Email is required';
+      newErrors.email = data.emailRequired;
       isValid = false;
     } else {
       // Email format validation using regex
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(formData.email.trim())) {
-        newErrors.email = 'Invalid email format';
+        newErrors.email = data.invalidFormat;
         isValid = false;
       }
     }
 
     if (!formData.password.trim()) {
-      newErrors.password = 'Password is required';
+      newErrors.password = data.passwordRequired;
       isValid = false;
     }
 
@@ -61,31 +61,34 @@ export default function LoginForm  () {
   };
 
   const handleSubmit = async (e) => {
-
+    toast.dismiss();
+    setIsLoading(true);
     e.preventDefault();
 
     if (validateForm()) {
-      setIsLoading(true);
       // Perform your login logic here using formData.email and formData.password
-      const signInData = await signIn('credentials',{redirect: false, email: formData.email, password: formData.password})
+      const signInData = await signIn("credentials", {
+        redirect: false,
+        email: formData.email,
+        password: formData.password,
+      });
 
-      if (signInData.ok){
+      console.log(signInData);
+      if (signInData.ok) {
+        toast.success(data.valSuccess, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
         router.refresh();
-        toast.success('Sign in correctly', {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-          router.back();
-        
+        router.push("/dashboard");
       } else if (signInData?.error) {
-        setIsLoading(false);
-        toast.error('Wrong email or password.', {
+        toast.error(data.valInvalid, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -94,12 +97,10 @@ export default function LoginForm  () {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       }
-      
-      
-    }else{
-      toast.error('Uh oh! Something went wrong.', {
+    } else {
+      toast.error(data.valError, {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -108,67 +109,86 @@ export default function LoginForm  () {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-
+      });
     }
+    setIsLoading(false);
   };
 
   return (
     <>
-    <div className="flex items-center justify-center h-screen">
-      <div className="bg-white p-8 shadow-md rounded-md w-96">
-        <h2 className="text-2xl text-black font-semibold mb-4">Login</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600 font-medium">
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-md focus:outline-none ${
-                errors.email ? 'border-red-500' : 'focus:border-blue-500'
-              }`}
-              placeholder="Enter your email"
-            />
-            {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-600 font-medium">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              className={`w-full px-4 py-2 border rounded-md focus:outline-none ${
-                errors.password ? 'border-red-500' : 'focus:border-blue-500'
-              }`}
-              placeholder="Enter your password"
-            />
-            {errors.password && <p className="text-red-500 text-sm mt-1">{errors.password}</p>}
-          </div>
-          <div className="flex justify-between items-center">
-            <button
-
-              className="bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600"
-              disabled={isLoading}
-            >
-                {isLoading ? <span>Loading...</span>:<span>Login</span>}
-            </button>
-            <span className="text-sm text-gray-600">
-              Don&apos;t have an account? <a href="/register">Register</a>
-            </span>
-          </div>
-        </form>
+      <div className="flex flex-col items-center justify-center min-h-screen pb-5">
+        <div className="bg-white p-8 shadow-md rounded-md w-96">
+          <h2 className="text-2xl text-black font-semibold mb-4">
+            {data.title}
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label
+                htmlFor="email"
+                className="block text-gray-600 font-medium"
+              >
+                {data.email}
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none ${
+                  errors.email ? "border-red-500" : "focus:border-blue-500"
+                }`}
+                placeholder={data.emailPlaceHolder}
+              />
+              {errors.email && (
+                <p className="text-red-500 text-sm mt-1">{errors.email}</p>
+              )}
+            </div>
+            <div className="mb-4">
+              <label
+                htmlFor="password"
+                className="block text-gray-600 font-medium"
+              >
+                {data.password}
+              </label>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none ${
+                  errors.password ? "border-red-500" : "focus:border-blue-500"
+                }`}
+                placeholder={data.passwordPlaceHolder}
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-1">{errors.password}</p>
+              )}
+            </div>
+            <div className="flex justify-center items-center">
+              <button
+              type="submit"
+                className={`${
+                  isLoading ? "opacity-50 cursor-not-allowed" : ""
+                } bg-blue-500 text-white px-4 py-2 rounded-md focus:outline-none hover:bg-blue-600 `}
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <span>{data.buttonLoadingText}</span>
+                ) : (
+                  <span>{data.buttonText}</span>
+                )}
+              </button>
+            </div>
+            <div>
+              <span className="text-sm text-gray-600">
+                {data.questionToSignUp} <a className="underline" href="/register">{data.toSingUp}</a>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
     </>
   );
-};
-
+}

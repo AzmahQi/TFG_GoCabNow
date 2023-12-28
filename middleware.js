@@ -11,8 +11,10 @@ function getLocale(request) {
   const locales = i18n.locales;
 
   // Use negotiator and intl-localematcher to get the best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
-  const locale = matchLocale(languages, locales, i18n.defaultLocale);
+  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
+    locales
+  );
+  let locale = matchLocale(languages, locales, i18n.defaultLocale);
 
   return locale;
 }
@@ -23,8 +25,8 @@ export function middleware(request) {
 
   // Check if the current path is in the list of excluded paths
   const isExcludedPath = [
-    '/manifest.json',
-    '/favicon.ico',
+    "/manifest.json",
+    "/favicon.ico",
     // Add other files in `public` if needed
   ].some((excludedPath) => pathname === excludedPath);
 
@@ -40,10 +42,13 @@ export function middleware(request) {
 
   // If the path is missing a locale prefix, redirect to the appropriate locale
   if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+    let locale = getLocale(request);
+    console.log(locale);
 
     // Construct the redirected path with the detected locale
-    const redirectPath = `/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`;
+    const redirectPath = `/${locale}${
+      pathname.startsWith("/") ? "" : "/"
+    }${pathname}`;
     return NextResponse.redirect(new URL(redirectPath, request.url));
   }
 }

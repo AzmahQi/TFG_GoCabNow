@@ -2,6 +2,7 @@
     "lang": "ES",
     "companyName": "GoCabNow",
     "navigation":{
+      "signInButton": "Iniciar sesión",
         "menu":[
             { "name": "Inicio", "href": "/", "id":"home" },
             { "name":"Estadísticas", "href": "/#stats", "id":"stats" },
@@ -13,16 +14,22 @@
           "profileMenu":[
             { "name": "Dashboard", "href": "/dashboard" },
             { "name": "Profile", "href": "/dashboard/profile" },
-            { "name": "Sing Out", "href": "logout" }
+            { "name": "Sign Out", "href": "logout" }
           ]
     },
-    "bighero" : {
-        "title": "Bienvenido a $companyName$",
-        "description": "description goes here",
-        "button": "click me",
-        "tagline": "tag line goes here",
-        "know": "About us"
+    "stats":{
+      "title": "Estadisticas",
+        "clients": "Clientes registrados",
+        "drivers": "Conductores registrados",
+        "reservations": "Reservas"
     },
+    "bighero": {
+      "title": "Bienvenido a $companyName$",
+      "description": "¡Viajes sin complicaciones con solo un clic! ¡Reserva tu GoCabNow ahora y disfruta del viaje!",
+      "button": "¡Reserva ya!",
+      "tagline": "¿Quieres saber más sobre nosotros?",
+      "know": "Sobre Nosotros"
+    },    
     "register": {
         "title": "Registrarse",
         "name": "Nombre",
@@ -155,7 +162,7 @@
         "faqs": [
           {
             "question": "¿Cómo reservo un taxi con GoCabNow?",
-            "answer": "¡Reservar un taxi con GoCabNow es fácil! Simplemente descarga nuestra aplicación, inicia sesión o crea una cuenta, ingresa tus ubicaciones de recogida y entrega, elige tu tipo de vehículo preferido y confirma tu reserva. Recibirás confirmación instantánea y detalles de tu conductor."
+            "answer": "¡Reservar un taxi con GoCabNow es fácil! ¡Simplemente haz clic en el botón 'Reserva ya', completa la información y listo! Además, GoCabNow ofrece la opción de iniciar sesión o crear una cuenta, proporcionando un panel donde puedes ver en todo momento el estado de tu reserva."
           },
           {
             "question": "¿Qué tipos de vehículos están disponibles en GoCabNow?",
@@ -163,7 +170,7 @@
           },
           {
             "question": "¿Cómo puedo rastrear mi taxi reservado?",
-            "answer": "Una vez que hayas reservado tu taxi, puedes rastrear fácilmente su ubicación en tiempo real a través de la aplicación GoCabNow. La aplicación proporciona actualizaciones en vivo sobre la ubicación de tu conductor, el tiempo estimado de llegada y otros detalles del viaje."
+            "answer": "Una vez que hayas reservado tu taxi, uno de nuestros conductores se pondrá en contacto contigo y enviará su ubicación en tiempo real a través de WhatsApp al número de contacto que proporcionaste."
           },
           {
             "question": "¿Hay diferentes opciones de pago disponibles?",
@@ -171,19 +178,63 @@
           },
           {
             "question": "¿Qué medidas de seguridad se implementan para los pasajeros?",
-            "answer": "En GoCabNow, tu seguridad es nuestra principal prioridad. Nuestros conductores pasan por exhaustivas verificaciones de antecedentes y todos los vehículos se inspeccionan regularmente. Además, la aplicación proporciona detalles esenciales del viaje, incluyendo el nombre del conductor, foto y detalles del vehículo, garantizando una experiencia segura y confiable."
+            "answer": "En GoCabNow, tu seguridad es nuestra principal prioridad. Nuestros conductores pasan por exhaustivas verificaciones de antecedentes y todos los vehículos se inspeccionan regularmente."
           },
           {
             "question": "¿Puedo programar un taxi para una fecha y hora futuras?",
-            "answer": "¡Absolutamente! GoCabNow te permite programar un taxi para una fecha y hora específicas con anticipación. Simplemente selecciona la opción \"Programar Viaje\" en la aplicación y elige tu fecha y hora preferidas."
+            "answer": "¡Absolutamente! GoCabNow te permite programar un taxi para una fecha y hora específicas con anticipación."
           },
           {
             "question": "¿Qué debo hacer si necesito cancelar mi reserva?",
-            "answer": "Puedes cancelar fácilmente tu reserva a través de la aplicación GoCabNow. Ten en cuenta que podría haber una tarifa de cancelación dependiendo del momento de la cancelación, por lo que es recomendable verificar la política de cancelación."
-          }
+            "answer": "Puedes cancelar fácilmente tu reserva enviando un mensaje al conductor de GoCabNow por WhatsApp."
+          }          
         ]
       },
       "footer": {
         "copyright": "2023 GoCabNow. Todos los derechos reservados."
-      }
+      },
+      "loginForm": {
+        "title": "Iniciar sesión",
+        "email": "Correo electrónico",
+        "emailPlaceHolder": "Ingrese su correo electrónico",
+        "emailRequired": "Se requiere correo electrónico",
+        "invalidFormat": "Formato de correo electrónico no válido",
+        "password": "Contraseña",
+        "passwordPlaceHolder": "Ingrese su contraseña",
+        "passwordRequired": "Se requiere contraseña",
+        "buttonText": "Iniciar sesión",
+        "buttonLoadingText": "Cargando...",
+        "questionToSignUp": "¿No tienes una cuenta?",
+        "toSingUp": "Registrarse",
+        "valSuccess": "Inicio de sesión correcto",
+        "valInvalid": "Correo electrónico o contraseña incorrectos.",
+        "valError": "¡Vaya! Algo salió mal."
+    },
+    "registerForm": {
+      "title": "Registro",
+      "name": "Nombre",
+      "namePlaceHolder": "Ingrese su nombre",
+      "nameRequired": "Se requiere el nombre",
+      "email": "Correo electrónico",
+      "emailPlaceHolder": "Ingrese su correo electrónico",
+      "emailRequired": "Se requiere el correo electrónico",
+      "invalidFormat": "Formato de correo electrónico inválido",
+      "contactNumber": "Número de contacto (WhatsApp requerido)",
+      "cnPlaceHolder": "Ingrese su número de contacto",
+      "cnRequired": "Se requiere el número de contacto",
+      "password": "Contraseña",
+      "passwordPlaceHolder": "Ingrese su contraseña",
+      "passwordRequired": "Se requiere la contraseña",
+      "confirmPassword": "Confirmar contraseña",
+      "confirmPassPlaceHolder": "Ingrese su contraseña",
+      "confirmPassRequired": "Se requiere la contraseña",
+      "confirmPassMatch": "Las contraseñas no coinciden",
+      "buttonText": "Registrarse",
+      "buttonLoadingText": "Cargando...",
+      "questionToSignIn": "¿Ya tienes una cuenta?",
+      "toSingIn": "Iniciar sesión",
+      "valSuccess": "Registro exitoso.",
+      "valInvalid": "Error en el registro: El correo electrónico ya existe.",
+      "valError": "Error durante el registro: "
+  }
 }

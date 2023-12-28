@@ -9,10 +9,7 @@ import StepB from "./StepB";
 import StepC from "./StepC";
 
 import StepFinal from "./StepFinal";
-
-
-
-
+import { useState, useEffect } from "react";
 
 
 // Step 1: Recollecting client info
@@ -20,11 +17,10 @@ import StepFinal from "./StepFinal";
 // Step 3: Review the info
 // Step 4: Confirmation of sending the info to show reservation id
 
-import { useState, useEffect } from "react";
+
 const initialFormData = {
 
-    firstName: '',
-    surname: '',
+    name: '',
     contactNumber: '',
 
     from: '',
@@ -37,16 +33,16 @@ const initialFormData = {
 const stepsArray = ['A','B','C'];
 
 
-export default function BookingManager({ showSteps }) {
+export default function BookingManager({ showSteps, session }) {
     //Setting states for Step and also Data
     const [step, setStep] = useState('A');
+    let numberReservation = null;
     const [formData, setFormData] = useState(initialFormData);
-
+    console.log(session);
 
 
     // Method to handle to go to the next step
     const handleNextStep = () => {
-      console.log("in: "+step)
         if (step === 'A'){
           setStep('B');
         }
@@ -77,12 +73,12 @@ export default function BookingManager({ showSteps }) {
 
     // Method to do the final operation
 
-    const handleSubmitFormData = () => {
-        //Do the validations needed here...
-
+    const handleSubmitFormData = async (e) => {
         if (!formData.contactNumber){
           alert('Error! Contact number not added');
         }else {
+          const reservation = await createReservation (formData);
+          numberReservation = reservation.id;
           setStep('Final');
         }
 
@@ -112,8 +108,6 @@ export default function BookingManager({ showSteps }) {
                 ))}
             </section>
         )
-
-
     }
 
 
@@ -124,7 +118,7 @@ export default function BookingManager({ showSteps }) {
         <div className="bg-blue-400 w-[600px] max-w-full px-6 py-1 mx-auto rounded-lg border-2 border-dotted border-sky-300 ">
           {renderTopStepNumbers()}
 
-          {/* //Steps */}
+          {/* Steps */}
           {step === 'A' ? (
             <StepA
               formData={formData}

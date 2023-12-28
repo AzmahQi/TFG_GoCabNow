@@ -2,8 +2,7 @@ export default function StepC  ({formData, handleChangeInput, handlePrevStep,han
     return (
       <div>
         <h1 className="mt-2 txt-xl font-bold">Step C: Confirm Form data</h1>
-        <DataConfirmRow label='First Name' value={formData.firstName}/>
-        <DataConfirmRow label='Surname' value={formData.surname}/>
+        <DataConfirmRow label='Name' value={formData.name}/>
         <DataConfirmRow label='Contact Number' value={formData.contactNumber}/>
         <DataConfirmRow label='From' value={formData.from}/>
         <DataConfirmRow label='To' value={formData.to}/>
@@ -15,7 +14,7 @@ export default function StepC  ({formData, handleChangeInput, handlePrevStep,han
         <button className="bg-yellow-400 px-4 py-2 rounded-x1"
         onClick={handlePrevStep}>
           Prev</button>
-          
+
           <button className="bg-blue-400 px-4 py-2 rounded-x1"
         onClick={handleSubmitFormData}>
           Submit</button>

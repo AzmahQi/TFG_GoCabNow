@@ -2,7 +2,7 @@
 import {Modal, Button} from '@/app/ui/ui'
 import React, { useState } from "react";
 import BookNow from '@/app/[lang]/booknow/page'
-export function BigHero( {base, content} ) {
+export function BigHero( {base, content, profile} ) {
 
   return (
     <div id='home' className="relative shadow-inner isolate px-6 pt-14 lg:px-8 w-full">
@@ -38,11 +38,11 @@ export function BigHero( {base, content} ) {
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Modal
               triggerElement={
-                <Button color="primary" className="ml-4">
-                  Book Now
+                <Button color="tertiary" className="ml-4">
+                  {content.button}
                 </Button>
               }
-              modalContent={<BookNow />}
+              modalContent={<BookNow profile={profile}/>}
               buttonText="Close"
             />
           </div>

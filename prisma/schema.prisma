@@ -5,17 +5,91 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
-
 }
 
-// Table for User
 model User {
-  id             Int      @id @default(autoincrement())
-  email          String?  @unique
-  password       String?
-  emailVerified  DateTime?
-  contactNumber  String
-  image          String?
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @default(now())
+  id                                     Int           @id @default(autoincrement())
+  email                                  String?       @unique
+  password                               String?
+  emailVerified                          DateTime?
+  contactNumber                          String       @unique
+  image                                  String?
+  createdAt                              DateTime      @default(now())
+  updatedAt                              DateTime      @default(now())
+  Profile                                Profile[]
+  Reservation_Reservation_clientIdToUser Reservation[] @relation("Reservation_clientIdToUser")
+  Reservation_Reservation_driverIdToUser Reservation[] @relation("Reservation_driverIdToUser")
+  Role                                   Role[]
+}
+
+model Permission {
+  id              Int               @id @default(autoincrement())
+  permissionName  String?           @db.VarChar(255)
+  description     String?           @db.Text
+  RolesPermission RolesPermission[]
+}
+
+model Profile {
+  id        Int             @id @default(autoincrement())
+  userId    Int?
+  name      String?         @db.VarChar(255)
+  birthDate DateTime?       @db.Date
+  gender    Profile_gender?
+  User      User?           @relation(fields: [userId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "Profile_ibfk_1")
+
+  @@index([userId], map: "userid")
+}
+
+model Reservation {
+  id                              String                        @id @db.VarChar(10)
+  reservationDate                 DateTime                      @db.DateTime(0)
+  pickupLocation                  String                        @db.VarChar(255)
+  destination                     String                        @db.VarChar(255)
+  reservationStatus               Reservation_reservationStatus @default(PENDING)
+  clientId                        Int
+  driverId                        Int?
+  passengers                      Int?
+  luggage                         Int?
+  createdAt                       DateTime                      @default(now())
+  updatedAt                       DateTime
+  User_Reservation_clientIdToUser User                          @relation("Reservation_clientIdToUser", fields: [clientId], references: [id], map: "Reservation_ibfk_1")
+  User_Reservation_driverIdToUser User?                         @relation("Reservation_driverIdToUser", fields: [driverId], references: [id], onDelete: Restrict, map: "Reservation_ibfk_2")
+
+  @@index([clientId], map: "clientId")
+  @@index([driverId], map: "driverId")
+}
+
+model Role {
+  id              Int               @id @default(autoincrement())
+  userId          Int?
+  roleName        String?           @db.VarChar(255)
+  description     String?           @db.Text
+  User            User?             @relation(fields: [userId], references: [id], onDelete: Restrict)
+  RolesPermission RolesPermission[]
+
+  @@index([userId], map: "Role_userId_fkey")
+}
+
+model RolesPermission {
+  roleId       Int
+  permissionId Int
+  Role         Role       @relation(fields: [roleId], references: [id], map: "RolesPermission_ibfk_1")
+  Permission   Permission @relation(fields: [permissionId], references: [id], map: "RolesPermission_ibfk_2")
+
+  @@id([roleId, permissionId])
+  @@index([permissionId], map: "permissionId")
+}
+
+enum Profile_gender {
+  Male
+  Female
+  Other
+}
+
+enum Reservation_reservationStatus {
+  CANCELLED
+  PENDING
+  CONFIRMED
+  FULFILLED
+  CLOSED
 }

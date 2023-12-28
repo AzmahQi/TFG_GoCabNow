@@ -33,6 +33,11 @@
   --primary-text-emphasis:var(--secondary-bg-rgb);
   --secondary-text-rgb:var(--text-light);
 
+  --tertiary-bg-rgb:255,195,0;
+  --primary-text-emphasis:var(--secondary-bg-rgb);
+  --tertiary-text-rgb:var(--text-dark);
+
+
   --dark-bg-rgb:0,8,20;
   --dark-text-rgb:var(--text-light);
   

@@ -1,8 +1,8 @@
+
 import "../../styles/booknow.css"
 import BookingManager from "./components/bookingmanager.js";
 
-
-export default function BookNow() {
+export default function BookNow({profile}) {
 
 
     return (
@@ -11,11 +11,7 @@ export default function BookNow() {
           <h1 className="h1">Booking now Steps by steps</h1>
         </div>
 
-        <BookingManager showSteps={true}/>
-
-
-
-
+        <BookingManager showSteps={true} session={profile}/>
       </>
     )
   }

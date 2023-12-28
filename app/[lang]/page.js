@@ -12,8 +12,6 @@ import Login from './login/page'
 import Register from './register/page'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
-import Image from "next/image";
-import myLogo from "/public/img/logo.webp"
 export default async function Home({ params: { lang } }) {
 
   const dictionary = await getDictionary(lang);
@@ -27,9 +25,8 @@ export default async function Home({ params: { lang } }) {
         <Navbar session={session} data={dictionary.navigation}/>
       </header>
       <main className="flex min-h-screen flex-col items-center justify-between">
-        <BigHero base={dictionary} content={dictionary.bighero}/>
-        <Stats />
-        <pre>Session: {JSON.stringify(session)}</pre>
+        <BigHero base={dictionary} content={dictionary.bighero} profile={session?.user?.profile}/>
+        <Stats content={dictionary.stats}/>
         <Features content={dictionary.features}/>
         <Testimonials testimonials={dictionary.testimonials} />
         <FAQs content={dictionary.faqsSection}/>

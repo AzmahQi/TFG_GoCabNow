@@ -1,10 +1,8 @@
 import LoginForm from "./loginForm";
-export default function Login() {
+import { getDictionary } from '@/get-dictionary'
+export default async function Login({ params: { lang } }) {
+  const dictionary = await getDictionary(lang);
   return (
-    <>
-      <body>
-        <LoginForm />
-      </body>
-    </>
+        <LoginForm data={dictionary.loginForm}/>
   );
 }

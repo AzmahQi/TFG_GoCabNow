@@ -1,26 +1,19 @@
-import { Roboto } from "next/font/google";
-import { i18n } from "@/i18n-config";
 import {ToastContainer} from '@/app/nexttoast'
+import { getDictionary } from '@/get-dictionary'
+import SecondaryNavigation from '../components/navigation';
+import Footer from '@/app/[lang]/components/footer'
 import 'react-toastify/dist/ReactToastify.css';
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ locale }));
-}
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: "300",
-  display: "swap",
-});
+export default async function Layout({ children, params: { lang } }) {
+    const dictionary = await getDictionary(lang);
+    return (
+      <body className="bg-gray-300">
+        <header className="shadow-md">
+          <SecondaryNavigation data={dictionary.navigation} />
+        </header>
 
-export const metadata = {
-  title: "Register | TFG",
-  description: "HAMZA",
-};
-
-export default function Layout({ children, params }) {
-  return (
-    <html lang={params.lang} className={roboto.className}>
-      {children}
-      <ToastContainer />
-    </html>
-  );
-}
+        <main className="mt-20">{children}</main>
+        <ToastContainer />
+        <Footer content={dictionary.footer} />
+      </body>
+    );
+  }

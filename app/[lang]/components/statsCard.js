@@ -9,17 +9,17 @@ const CounterCard = ({ title, count }) => (
   </div>
 );
 
-const StatsCounter = ({ Clients, Drivers, Reservations }) => {
+const StatsCounter = ({content, clients, drivers, reservations }) => {
   const [registeredClients, setRegisteredClients] = useState(0);
   const [registeredDrivers, setRegisteredDrivers] = useState(0);
-  const [reservations, setReservations] = useState(0);
+  const [registeredReservations, setReservations] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
       const increment = 1;
-      const finalRegisteredClients = Clients;
-      const finalRegisteredDrivers = Drivers;
-      const finalReservations = Reservations;
+      const finalRegisteredClients = clients;
+      const finalRegisteredDrivers = drivers;
+      const finalReservations = reservations;
 
       let currentRegisteredClients = 0;
       let currentRegisteredDrivers = 0;
@@ -34,13 +34,13 @@ const StatsCounter = ({ Clients, Drivers, Reservations }) => {
           currentRegisteredClients += increment;
         if (currentRegisteredDrivers < finalRegisteredDrivers)
           currentRegisteredDrivers += increment;
-        if (currentReservations < finalReservations)
+        if (currentReservations <= finalReservations)
           currentReservations += increment;
 
         if (
           currentRegisteredClients >= finalRegisteredClients &&
           currentRegisteredDrivers >= finalRegisteredDrivers &&
-          currentReservations >= finalReservations
+          currentReservations > finalReservations
         ) {
           clearInterval(interval);
         }
@@ -48,14 +48,14 @@ const StatsCounter = ({ Clients, Drivers, Reservations }) => {
     };
 
     fetchData();
-  }, []);
+  }, [clients, drivers, reservations]);
 
   return (
     <div className="grid grid-cols-3 gap-4">
       {/* Each counter is wrapped in a CounterCard component */}
-      <CounterCard title="Registered Clients" count={registeredClients}  />
-      <CounterCard title="Registered Drivers" count={registeredDrivers}  />
-      <CounterCard title="Reservations" count={reservations} />
+      <CounterCard title={content.clients} count={registeredClients}  />
+      <CounterCard title={content.drivers} count={registeredDrivers}  />
+      <CounterCard title={content.reservations} count={registeredReservations} />
     </div>
   );
 };

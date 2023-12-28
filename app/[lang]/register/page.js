@@ -1,11 +1,12 @@
 import RegisterForm from "./registerForm";
-export default function Register() {
+
+import { getDictionary } from '@/get-dictionary'
+export default async function Register({ params: { lang } }) {
+  const dictionary = await getDictionary(lang);
+ 
   return (
-    <body className="primary">
-      <header className="shadow-md"></header>
-      <main>
-        <RegisterForm />
-      </main>
-    </body>
+    <>
+        <RegisterForm data={dictionary.registerForm} lang={lang}/>
+    </>
   );
 }

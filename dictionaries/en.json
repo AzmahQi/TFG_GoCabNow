@@ -1,6 +1,7 @@
 {   "lang": "EN",
     "companyName": "GoCabNow",
     "navigation":{
+      "signInButton": "Sign In",
         "menu":[
             { "name":"Home", "href": "/", "id":"home" },
             { "name":"Stats", "href": "/#stats", "id":"stats" },
@@ -15,12 +16,18 @@
             { "name": "Sign Out", "href": "logout" }
           ]
     },
-    "bighero" : {
-        "title": "Welcome to $companyName$",
-        "description": "description goes here",
-        "button": "click me",
-        "tagline": "tag line goes here",
-        "know": "About us"
+    "stats":{
+      "title": "Stats",
+        "clients": "Registered Clients",
+        "drivers": "Registered Drivers",
+        "reservations": "Reservations"
+    },
+    "bighero": {
+      "title": "Welcome to $companyName$",
+      "description": "Hassle-free journeys with just one click! Book your GoCabNow now and enjoy the ride.",
+      "button": "Book Now!",
+      "tagline": "Want to know more about us?",
+      "know": "About Us"
     },
     "register": {
         "title": "Register",
@@ -153,16 +160,16 @@
     { "title": "FAQs",
       "faqs": [
         {
-          "question": "How do I book a taxi using GoCabNow?",
-          "answer": "Booking a taxi with GoCabNow is easy! Simply download our app, sign in or create an account, enter your pick-up and drop-off locations, choose your preferred vehicle type, and confirm your booking. You'll receive instant confirmation and details of your driver."
+          "question": "How do I book a taxi with GoCabNow?",
+          "answer": "Booking a taxi with GoCabNow is easy! Just click the 'Book Now' button, fill in the information, and you're done! Additionally, GoCabNow offers the option to log in or create an account, providing a dashboard where you can track the status of your reservation at any time."
         },
         {
           "question": "What types of vehicles are available on GoCabNow?",
           "answer": "GoCabNow offers a variety of vehicles to suit your needs, including standard cars, SUVs, and premium options. You can choose the vehicle type that best fits your requirements and preferences."
         },
         {
-          "question": "How can I track my booked taxi?",
-          "answer": "Once your taxi is booked, you can easily track its real-time location through the GoCabNow app. The app provides live updates on your driver's location, estimated time of arrival, and other trip details."
+          "question": "How can I track my reserved taxi?",
+          "answer": "Once you have booked your taxi, one of our drivers will get in touch with you and send their real-time location via WhatsApp to the contact number you provided."
         },
         {
           "question": "Are there different payment options available?",
@@ -170,37 +177,63 @@
         },
         {
           "question": "What safety measures are in place for passengers?",
-          "answer": "At GoCabNow, your safety is our top priority. Our drivers undergo thorough background checks, and all vehicles are regularly inspected. Additionally, the app provides essential trip details, including the driver's name, photo, and vehicle details, ensuring a secure and reliable experience."
+          "answer": "At GoCabNow, your safety is our top priority. Our drivers undergo thorough background checks, and all vehicles are regularly inspected."
         },
         {
           "question": "Can I schedule a taxi for a future date and time?",
-          "answer": "Absolutely! GoCabNow allows you to schedule a taxi for a specific date and time in advance. Simply select the \"Schedule Ride\" option in the app and choose your preferred date and time."
+          "answer": "Absolutely! GoCabNow allows you to schedule a taxi for a specific date and time in advance."
         },
         {
-          "question": "What should I do if I need to cancel my booking?",
-          "answer": "You can easily cancel your booking through the GoCabNow app. Please note that there might be a cancellation fee depending on the time of cancellation, so it's advisable to check the cancellation policy."
+          "question": "What should I do if I need to cancel my reservation?",
+          "answer": "You can easily cancel your reservation by sending a message to the GoCabNow driver via WhatsApp."
         }
       ]
     },
   "footer": {
     "copyright": "2023 GoCabNow. All rights reserved."
   },
-  "registerForm": {
-    "name":"Name",
+  "loginForm": {
+    "title": "Sign In",
     "email":"Email",
+    "emailPlaceHolder": "Enter your email",
+    "emailRequired": "Email is required",
+    "invalidFormat": "Invalid email format",
+    "password": "Password",
+    "passwordPlaceHolder": "Enter your password",
+    "passwordRequired": "Password is required",
+    "buttonText": "Sign In",
+    "buttonLoadingText": "Loading...",
+    "questionToSignUp": "Don't have an account?",
+    "toSingUp": "Sign Up",
+    "valSuccess": "Sign in correctly",
+    "valInvalid": "Wrong email or password.",
+    "valError": "Uh oh! Something went wrong."
+    },
+  "registerForm": {
+    "title":"Sign Up",
+    "name":"Name",
+    "namePlaceHolder": "Enter your Name",
+    "nameRequired": "Name is required",
+    "email":"Email",
+    "emailPlaceHolder": "Enter your email",
+    "emailRequired": "Email is required",
+    "invalidFormat": "Invalid email format",
     "contactNumber": "Contact Number (WhatsApp required)",
-
-    "errors":[
-      {
-        "status": 409,
-        "message": "OPs ya existe este corre"
-      },
-      {
-        "status": 200,
-        "message": "Resgitro"
-      }
-    ]
-
-    
+    "cnPlaceHolder": "Enter your contact number",
+    "cnRequired": "Contact number is required",
+    "password": "Password",
+    "passwordPlaceHolder": "Enter your password",
+    "passwordRequired": "Password is required",
+    "confirmPassword": "Confirm Password",
+    "confirmPassPlaceHolder": "Enter your password",
+    "confirmPassRequired": "Password is required",
+    "confirmPassMatch":"Passwords do not match",
+    "buttonText": "Sign Up",
+    "buttonLoadingText": "Loading...",
+    "questionToSignIn": "Already have an account?",
+    "toSingIn": "Sing In",
+    "valSuccess": "Registration successful.",
+    "valInvalid": "Registration failed: Email already exists.",
+    "valError": "Error during registration: "
     }
   }

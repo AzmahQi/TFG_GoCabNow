@@ -15,8 +15,7 @@ export const metadata = {
   title: "Home | TFG",
   description: "HAMZA",
 };
-
-export default function Layout({ children, params }) {
+export default function RootLayout({ children, params }) {
   return (
     <html lang={params.lang} className={roboto.className + " scroll-smooth"}>
       {children}
