@@ -16,8 +16,9 @@ export default async function Home({ params: { lang } }) {
 
   const dictionary = await getDictionary(lang);
 
-  //retreive session information
+  //retrieve session information
   const session = await getServerSession(authOptions);
+
   return (
     <>
     <body className='primary'>
@@ -25,7 +26,7 @@ export default async function Home({ params: { lang } }) {
         <Navbar session={session} data={dictionary.navigation}/>
       </header>
       <main className="flex min-h-screen flex-col items-center justify-between">
-        <BigHero base={dictionary} content={dictionary.bighero} profile={session?.user?.profile}/>
+        <BigHero base={dictionary} content={dictionary.bighero} session={session}/>
         <Stats content={dictionary.stats}/>
         <Features content={dictionary.features}/>
         <Testimonials testimonials={dictionary.testimonials} />

@@ -1,11 +1,15 @@
 'use client'
 // components/ReservationsCard.js
+
 import DriverOptions from './driverOptions';
 import { Disclosure } from '@headlessui/react';
 import { getStatusColors } from '@/app/ui/ui';
 
-function ReservationsCard({ title, reservations, driver, driverId }) {
-  return (
+
+
+function ReservationsCard({ title, reservations, driver, driverId,  }) {
+
+  return  (
     <div className="bg-white p-6 rounded-lg mb-2 shadow-md overflow-x-auto">
       <h2 className="text-xl font-semibold mb-4">{title}</h2>
 
@@ -35,7 +39,7 @@ function ReservationsCard({ title, reservations, driver, driverId }) {
             </thead>
             <tbody>
               {reservations.map((reservation, index) => (
-                <Disclosure key={reservation.id}>
+                <Disclosure key={reservation.reservationRef}>
                   {({ open }) => (
                     <>
                       <Disclosure.Button
@@ -45,7 +49,7 @@ function ReservationsCard({ title, reservations, driver, driverId }) {
                         } hover:bg-gray-200`}
                       >
                         <td className="py-2 px-6 whitespace-nowrap">
-                          {reservation.id}
+                          {reservation.reservationRef}
                         </td>
                         <td className="py-2 px-6 whitespace-nowrap">
                           {new Date(
@@ -109,8 +113,8 @@ function ReservationsCard({ title, reservations, driver, driverId }) {
         </div>
       )}
     </div>
-  );
-}
+
+)}
 
 
 export default ReservationsCard;

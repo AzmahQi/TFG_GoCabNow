@@ -41,7 +41,8 @@ model Profile {
 }
 
 model Reservation {
-  id                              String                        @id @db.VarChar(10)
+  id                              Int                           @id @default(autoincrement())
+  reservationRef                  String?                       @unique @db.VarChar(10)
   reservationDate                 DateTime                      @db.DateTime(0)
   pickupLocation                  String                        @db.VarChar(255)
   destination                     String                        @db.VarChar(255)

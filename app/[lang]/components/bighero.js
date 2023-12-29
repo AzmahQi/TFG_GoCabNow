@@ -2,7 +2,7 @@
 import {Modal, Button} from '@/app/ui/ui'
 import React, { useState } from "react";
 import BookNow from '@/app/[lang]/booknow/page'
-export function BigHero( {base, content, profile} ) {
+export function BigHero( {base, content, session} ) {
 
   return (
     <div id='home' className="relative shadow-inner isolate px-6 pt-14 lg:px-8 w-full">
@@ -42,7 +42,7 @@ export function BigHero( {base, content, profile} ) {
                   {content.button}
                 </Button>
               }
-              modalContent={<BookNow profile={profile}/>}
+              modalContent={<BookNow session={session}/>}
               buttonText="Close"
             />
           </div>

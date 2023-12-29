@@ -45,6 +45,7 @@ export const authOptions ={
               id: `${user.id}`,
               name: userProfile.name,
               email: user.email,
+              contactNumber: user.contactNumber,
               profile: userProfile,
               role: userRole.permissionName
             }
@@ -70,6 +71,7 @@ export const authOptions ={
             ...session,
             user: {
               ...session,
+              contactNumber: token.user.contactNumber,
               profile: token.user.profile,
               role: token.user.role
             }

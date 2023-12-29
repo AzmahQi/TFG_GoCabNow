@@ -41,7 +41,6 @@ export default function Navbar({ data, session }) {
   }, [scroll.y, scroll.lastY]);
 
   return (
-
     <Disclosure
       as="nav"
       className={navClassList.join(" ") + " fixed top-0 z-10 w-full secondary"}
@@ -78,7 +77,14 @@ export default function Navbar({ data, session }) {
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                   <Image loader={ImageLoader} src={myLogo} width={60} height={60} className="hover:scale-150 transition-all duration-500 cursor-pointer" alt="logo"/>
+                  <Image
+                    loader={ImageLoader}
+                    src={myLogo}
+                    width={60}
+                    height={60}
+                    className="hover:scale-150 transition-all duration-500 cursor-pointer"
+                    alt="logo"
+                  />
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-1">
@@ -103,22 +109,20 @@ export default function Navbar({ data, session }) {
                   </div>
                 </div>
               </div>
-              <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-              <div className="flex items-center space-x-2 sm:ml-6 py-3">
-                <LocaleSwitcher />
-              </div>
-              <div>
-                {!session ? (
-                  <Button
-                    size="small"
-                    className="relative"
-                    onClick={() => signIn()}
-                  >
-                    {data.signInButton}
-                  </Button>
-                ) : (
-                  <ProfileMenu profileMenu={profile} />
-                )}
+              <div className="flex flex-2 items-center justify-center sm:items-stretch sm:justify-end">
+                <div className="flex space-x-1 items-center">
+                  <LocaleSwitcher />
+                  {!session ? (
+                    <Button
+                      size="small"
+                      className="relative"
+                      onClick={() => signIn()}
+                    >
+                      {data.signInButton}
+                    </Button>
+                  ) : (
+                    <ProfileMenu profileMenu={profile} />
+                  )}
                 </div>
               </div>
             </div>

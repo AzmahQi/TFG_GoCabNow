@@ -2,54 +2,79 @@ import { NextResponse } from "next/server";
 import { i18n } from "./i18n-config";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
+import { setCookie, parseCookies } from "nookies"; // Assuming you have a cookie library like nookies
 export { default } from "next-auth/middleware";
 
 // Function to extract locale from request headers
 function getLocale(request) {
-  // Transform request headers into a plain object
-  const negotiatorHeaders = Object.fromEntries(request.headers);
-  const locales = i18n.locales;
+  try {
+    const negotiatorHeaders = Object.fromEntries(request.headers);
+    const locales = i18n.locales;
+    const languages = new Negotiator({ headers: negotiatorHeaders }).languages(locales);
+    return matchLocale(languages, locales, i18n.defaultLocale);
+  } catch (error) {
+    console.error("Error extracting locale:", error);
+    throw new NextResponse.Error("Internal Server Error", { status: 500 });
+  }
+}
 
-  // Use negotiator and intl-localematcher to get the best locale
-  const languages = new Negotiator({ headers: negotiatorHeaders }).languages(
-    locales
+// Function to check if the path should be excluded
+function shouldExcludePath(path) {
+  const excludedPaths = ["/manifest.json", "/favicon.ico"];
+  return excludedPaths.some((excludedPath) => path === excludedPath);
+}
+
+// Function to check if the path is missing a supported locale prefix
+function isMissingLocalePrefix(path, supportedLocales) {
+  return supportedLocales.every(
+    (locale) => !path.startsWith(`/${locale}/`) && path !== `/${locale}`
   );
-  let locale = matchLocale(languages, locales, i18n.defaultLocale);
+}
 
-  return locale;
+// Function to construct the redirected path with the detected locale
+function constructRedirectPath(locale, originalPath) {
+  return `/${locale}${originalPath.startsWith("/") ? "" : "/"}${originalPath}`;
 }
 
 // Middleware for handling i18n and locale-based redirects
 export function middleware(request) {
   const pathname = request.nextUrl.pathname;
 
-  // Check if the current path is in the list of excluded paths
-  const isExcludedPath = [
-    "/manifest.json",
-    "/favicon.ico",
-    // Add other files in `public` if needed
-  ].some((excludedPath) => pathname === excludedPath);
-
-  // If the path is excluded, return without further processing
-  if (isExcludedPath) {
+  if (shouldExcludePath(pathname)) {
     return;
   }
 
-  // Check if the current path is missing any supported locale prefix
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
-  );
+  if (isMissingLocalePrefix(pathname, i18n.locales)) {
+    try {
 
-  // If the path is missing a locale prefix, redirect to the appropriate locale
-  if (pathnameIsMissingLocale) {
-    let locale = getLocale(request);
-    console.log(locale);
+      const cookies = parseCookies(request);
+      const existingLang = request.cookies.get('lang').value;
+      console.log("Middle: "+existingLang);
+      let locale = getLocale(request);
+      let redirectPath = null
+      // If the lang cookie is not set, or the path is missing the locale prefix
+      if (!existingLang) {
+        locale = getLocale(request);
+        redirectPath = constructRedirectPath(locale, pathname);
+        console.log("Chosen language1:", locale);
+        // Set a cookie with the chosen language
+        setCookie({ res: request.res }, "lang", locale, {
+          maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
+          path: "/",
+        });
+      }else{
+        redirectPath = constructRedirectPath(existingLang, pathname);
+        console.log("Chosen language2:", existingLang, redirectPath);
 
-    // Construct the redirected path with the detected locale
-    const redirectPath = `/${locale}${
-      pathname.startsWith("/") ? "" : "/"
-    }${pathname}`;
-    return NextResponse.redirect(new URL(redirectPath, request.url));
+      }
+
+      return NextResponse.redirect(new URL(redirectPath, request.url));
+
+      // If the lang cookie is already set, proceed without redirection
+    } catch (error) {
+      // Handle errors from getLocale function or cookie-related operations
+      return error;
+    }
   }
 }
 

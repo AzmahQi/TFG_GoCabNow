@@ -11,11 +11,11 @@ export default function StepC  ({formData, handleChangeInput, handlePrevStep,han
         <DataConfirmRow label='luggage' value={formData.luggage}/>
 
         <div className="my-2 flex justify-between items-center">
-        <button className="bg-yellow-400 px-4 py-2 rounded-x1"
+        <button className="bg-red-500 hover:bg-red-400 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl"
         onClick={handlePrevStep}>
           Prev</button>
 
-          <button className="bg-blue-400 px-4 py-2 rounded-x1"
+          <button className="tertiary hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl"
         onClick={handleSubmitFormData}>
           Submit</button>
       </div>

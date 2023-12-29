@@ -1,4 +1,5 @@
-
+import { Suspense } from 'react'
+import LoadingCard from './components/loadingCard';
 import { DefaultUserImage } from '@/app/ui/ui'
 import ReservationsCard from "@/app/[lang]/dashboard/components/reservationsCard";
 import { getServerSession } from "next-auth";
@@ -79,11 +80,22 @@ export default async function VER({ params: { lang } }) {
                 {/* Replace with your content */}
                             {/* Existing content */}
             <div className="container">
+            <Suspense fallback={  <div className="animate-pulse mb-4">
+    <div className="h-8 bg-gray-300 w-3/4 mb-2 rounded"></div>
+    <div className="h-4 bg-gray-300 w-1/2 rounded"></div>
+  </div>}>
               <h1 className="text-3xl font-bold mb-4">Welcome, {user.name} you are a {role} user. </h1>
+            </Suspense>
+              <Suspense fallback={<LoadingCard />}>
               {isDriver? <ReservationsCard driver={isDriver} driverId={userId} title={'Pending Reservations'} reservations={pendingReservations} />: null}
+              </Suspense>
+              <Suspense fallback={<LoadingCard />}>
               {isDriver? <ReservationsCard driver={isDriver} driverId={userId} title={'Current Reservations'} reservations={futureReservations} />:
               <ReservationsCard title={'Current Reservations'} reservations={futureReservations} />}
+              </Suspense>
+              <Suspense fallback={<LoadingCard />}>
               <ReservationsCard title={'All Reservations'} reservations={reservations} />
+              </Suspense>
               {/* ... existing components ... */}
             </div>
                 {/* /End replace */}

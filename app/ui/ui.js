@@ -23,10 +23,10 @@ export function Modal({ triggerElement, modalContent, buttonText }) {
 
   return (
     <>
-      {cloneElement(triggerElement, { onClick: handleTriggerClick})}
+      {cloneElement(triggerElement, { onClick: handleTriggerClick })}
       <Transition show={isOpen} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 overflow-y-auto" onClose={closeModal}>
-        <div className="flex items-center justify-center min-h-full">
+          <div className="flex items-center justify-center min-h-full">
             <Transition.Child
               as={Fragment}
               enter="ease-out duration-300"
@@ -49,18 +49,17 @@ export function Modal({ triggerElement, modalContent, buttonText }) {
               leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel className="fixed flex items-center justify-center">
-                <div className="bg-blue-950 p-6 rounded-lg w-full max-w-md text-left">
-                  {modalContent}
-
-                  <div className="mt-4 items-center">
+                <div className="bg-blue-950 p-6 rounded-lg w-full max-w-md text-left relative">
+                  <div className="flex p-1 justify-end">
+                    {/* Smaller close button */}
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="text-gray-300 p-1 ring ring-gray-500 rounded-full hover:text-gray-700 focus:ring-gray-700"
+                      className="text-gray-300 p-1 ring ring-gray-500 rounded-full hover:text-gray-700 focus:ring-gray-700 text-sm"
                     >
                       <span className="sr-only">Close</span>
                       <svg
-                        className="h-6 w-6"
+                        className="h-4 w-4"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -70,6 +69,8 @@ export function Modal({ triggerElement, modalContent, buttonText }) {
                       </svg>
                     </button>
                   </div>
+
+                  {modalContent}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

@@ -1,4 +1,5 @@
 import { Menu, Transition } from '@headlessui/react'
+import { useRouter } from 'next/navigation';
 import { Fragment, forwardRef,  useEffect, useRef, useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { getStatusColors } from '@/app/ui/ui';
@@ -11,7 +12,6 @@ const reservationsConfirmed = [
     {"title":"Done" , "value":"FULFILLED"},
     {"title":"Reject" , "value":"PENDING"},
     {"title":"Cancel" , "value":"CANCELLED"},
-
 ]
 
 
@@ -20,7 +20,7 @@ const reservationsConfirmed = [
 
 export default function DriverOptions({status, reservationId, driverId}) {
 
-    const renderMenuItems = (driverId) => {
+    const renderMenuItems = () => {
         if (status === 'PENDING') {
           return reservationsPending.map((item, index) => (
             <Menu.Item key={index}>
@@ -63,15 +63,13 @@ export default function DriverOptions({status, reservationId, driverId}) {
           ));
         }
       };
-    
+      const router = useRouter();
       const onClickHandler = async (e, val) =>  {
         e.stopPropagation();
-        console.log(driverId)
         await updateReservationStatus(reservationId,val,driverId);
+        router.refresh();
     }
-  
-  
-  
+
     return (
 
       <Menu as="div" className="inline-block">
