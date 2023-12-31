@@ -1,13 +1,10 @@
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { signOut } from 'next-auth/react';
-import {DefaultUserImage } from '@/app/ui/ui'
-// Utility function for conditional CSS classes
+import {DefaultUserImage} from '@/app/ui'
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ');
   }
-// Assuming 'profileMenu' is an array of objects with properties 'name' and 'href'
-
 function ProfileMenu({ profileMenu }) {
   return (
     <Menu as="div" className="relative ml-3">

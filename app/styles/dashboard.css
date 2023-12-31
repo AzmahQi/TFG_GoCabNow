@@ -1,5 +1,6 @@
-
-
-.h1{
-    color: red;
-}
+.tertiary {
+    background: rgb(var(--tertiary-bg-rgb));
+    color: rgb(var(--tertiary-text-rgb));
+    -webkit-box-shadow: 0px 0px 9px 0px #000000; 
+    box-shadow: 0px 0px 9px 0px #000000;
+  }

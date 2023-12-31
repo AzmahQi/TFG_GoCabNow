@@ -1,5 +1,5 @@
 
-export default function StepA({ formData, handleChangeInput, handleNextStep, session }) {
+export default function StepA({ content, formData, handleChangeInput, handleNextStep, session }) {
   const isFormDataValid = () => {
     return formData.name?.trim() !== '' &&
            formData.contactNumber?.trim() !== '';
@@ -7,9 +7,9 @@ export default function StepA({ formData, handleChangeInput, handleNextStep, ses
 
   return (
     <div>
-      <h1 className="mt-2 txt-xl font-bold">Step A: Customer Identity Info</h1>
+      <h1 className="mt-2 txt-xl font-bold">{content.title}</h1>
       <div className="my-2">
-        <label>Name</label>
+        <label>{content.name}</label>
         <input
           type="text"
           name="name"
@@ -18,11 +18,11 @@ export default function StepA({ formData, handleChangeInput, handleNextStep, ses
           className={`w-full outline-none border border-gray-900 px-2 py-1 rounded-lg focus:border-blue-600 ${session ? 'disabled' : ''}`}
           disabled={session}
         />
-        {!formData.name && <p className="text-red-500">Name is required</p>}
+        {!formData.name && <p className="text-red-500">{content.nameRequired}</p>}
       </div>
 
       <div className="my-2">
-        <label>Contact Number</label>
+        <label>{content.contactNumber}</label>
         <input
           type="text"
           name="contactNumber"
@@ -31,17 +31,17 @@ export default function StepA({ formData, handleChangeInput, handleNextStep, ses
           className={`w-full outline-none border border-gray-400 px-2 py-1 rounded-lg focus:border-blue-600 ${session ? 'disabled' : ''}`}
           disabled={session}
         />
-        {!formData.contactNumber && <p className="text-red-500">Contact Number is required</p>}
+        {!formData.contactNumber && <p className="text-red-500">{content.cnRequired}</p>}
       </div>
 
       <div className="my-2 flex justify-end items-center">
         <button
-          className={`tertiary hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl ${!isFormDataValid() && 'opacity-50 cursor-not-allowed'}`}
+          className={`tertiary text-white hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl ${!isFormDataValid() && 'opacity-50 cursor-not-allowed'}`}
           onClick={handleNextStep}
           disabled={!isFormDataValid()}
 
         >
-          Next
+          {content.buttonNextText}
         </button>
       </div>
     </div>

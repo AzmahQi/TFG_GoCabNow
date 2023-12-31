@@ -1,6 +1,6 @@
 'use client'
 import { Dialog, Transition } from '@headlessui/react';
-import { Fragment, useState, useRef, cloneElement } from 'react';
+import { Fragment, useState, cloneElement } from 'react';
 import Image from "next/image";
 import ImageLoader from '@/app/hooks/imageLoader'
 import userImage from "/public/img/user.webp"
@@ -94,11 +94,11 @@ size === 'small'
 const colorClasses = (() => {
 switch (color) {
   case 'primary':
-    return 'bg-blue-600 shadow-lg hover:bg-blue-500 focus:border-blue-900';
+    return 'bg-blue-500 shadow-lg hover:bg-blue-600 focus:border-blue-900';
   case 'secondary':
-    return 'bg--500 hover:bg-gray-600 focus:border-gray-300';
+    return 'bg-gray-500 hover:bg-gray-600 focus:border-gray-300';
   case 'tertiary':
-    return 'tertiary hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl decoration-[#50d71e]'
+    return 'tertiary text-white hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl decoration-[#50d71e]'
   case 'success':
     return 'bg-green-500 hover:bg-green-600 focus:border-green-300';
   case 'danger':
@@ -106,7 +106,7 @@ switch (color) {
   case 'disabled':
     return 'bg-gray-300 text-gray-500 cursor-not-allowed';
   default:
-    return 'bg-blue-500 hover:bg-blue-600 focus:border-blue-300';
+    return 'bg-white text-dark hover:bg-gray-500/30 focus:border-gray-500 font-extrabold text-xl';
 }
 })();
   return (

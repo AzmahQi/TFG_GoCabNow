@@ -14,5 +14,4 @@ const Footer = ({content}) => {
     </footer>
   );
 };
-
 export default Footer;

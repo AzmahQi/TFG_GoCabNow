@@ -1,6 +1,5 @@
 'use client'
 import TestimonialCard from '@/app/[lang]/components/testimonialCard';
-
 const Testimonials = ({ testimonials }) => {
   return (
     <section id='testimonials' className="primary py-16 w-full">

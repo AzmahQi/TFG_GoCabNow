@@ -1,13 +1,9 @@
 
 import "../../styles/booknow.css"
-import BookingManager from "./components/bookingmanager.js";
+import BookingManager from "@/app/[lang]/booknow/components/bookingmanager"
+export default function BookNow({dictionary,session}) {
 
-export default function BookNow({session}) {
-
-  console.log(session);
     return (
-      <>
-        <BookingManager showSteps={false} session={session}/>
-      </>
+        <BookingManager content={dictionary.bookNow} showSteps={false} session={session}/>
     )
   }

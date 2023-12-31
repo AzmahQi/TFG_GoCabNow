@@ -1,14 +1,14 @@
 'use client'
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { LogoImage, DefaultUserImage, Button } from "@/app/ui/ui";
+import { LogoImage, Button } from "@/app/ui/";
 import { signOut } from "next-auth/react";
 
 function Sidebar({navigation}) {
 
   const handleLogout = async () => {
     await signOut();
-    // Add any additional logout logic here
+
   };
 
   function classNames(...classes) {
@@ -154,4 +154,4 @@ function Sidebar({navigation}) {
   );
 }
 
-export { Sidebar };
+export default Sidebar ;

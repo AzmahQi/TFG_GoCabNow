@@ -1,23 +1,23 @@
-export default function StepC  ({formData, handleChangeInput, handlePrevStep,handleSubmitFormData})  {
+export default function StepC  ({content, formData, handlePrevStep,handleSubmitFormData})  {
     return (
       <div>
-        <h1 className="mt-2 txt-xl font-bold">Step C: Confirm Form data</h1>
-        <DataConfirmRow label='Name' value={formData.name}/>
-        <DataConfirmRow label='Contact Number' value={formData.contactNumber}/>
-        <DataConfirmRow label='From' value={formData.from}/>
-        <DataConfirmRow label='To' value={formData.to}/>
-        <DataConfirmRow label='Date Time' value={formData.dateTime}/>
-        <DataConfirmRow label='Number of Passengers' value={formData.numPassenger}/>
-        <DataConfirmRow label='luggage' value={formData.luggage}/>
+        <h1 className="mt-2 txt-xl font-bold">{content.stepC.title}</h1>
+        <DataConfirmRow label={content.stepA.name} value={formData.name}/>
+        <DataConfirmRow label={content.stepA.contactNumber} value={formData.contactNumber}/>
+        <DataConfirmRow label={content.stepB.from} value={formData.from}/>
+        <DataConfirmRow label={content.stepB.to} value={formData.to}/>
+        <DataConfirmRow label={content.stepB.dateTime} value={formData.dateTime}/>
+        <DataConfirmRow label={content.stepB.passengers} value={formData.numPassenger}/>
+        <DataConfirmRow label={content.stepB.luggage} value={formData.luggage}/>
 
         <div className="my-2 flex justify-between items-center">
         <button className="bg-red-500 hover:bg-red-400 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl"
         onClick={handlePrevStep}>
-          Prev</button>
+          {content.stepB.buttonPrevText}</button>
 
           <button className="tertiary hover:bg-yellow-500 focus:border-gray-300 font-extrabold text-xl px-3 py-1 rounded-2xl"
         onClick={handleSubmitFormData}>
-          Submit</button>
+          {content.stepC.buttonSubmitText}</button>
       </div>
       </div>
     )

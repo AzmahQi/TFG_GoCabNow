@@ -1,20 +1,52 @@
-Legend:
+
+# Legend
+
 [] --> Things to be done
-[X] --> Means that the thing is done
+[x] --> Means that the thing is done
 [~] --> Work in progress
 
-###########################################################################
-[X] Build the project to start working
-[X] Start with the dictionaries and translation of the page MAIN LANG: English and Spanish (JUST MAKE IT WORK)
-[X] Do some preparation to start working on the mane page (define pallet, fonts, etc.)
-[X] Build the structure of the main PAGE
-[~] Build the structure of the Dashboard PAGE
-[X] Start with the logic (Booking) DEMO
-[X] Connect with the MySQL
-[X] Start with the login system (JUST MAKE IT WORK)
-[~] Try to build the project and see if the production enviroment is still working.
-[] Gather some opinions about the page
-[] Do the changes needed, after the feedback
+# Work to do
 
-[] ...
-###########################################################################
+[x] Build the project to start working
+[x] Start with the dictionaries and translation of the page MAIN LANG: English and Spanish (JUST MAKE IT WORK)
+[x] Do some preparation to start working on the mane page (define pallet, fonts, etc.)
+[x] Build the structure of the main PAGE
+[x] Build the structure of the Dashboard PAGE
+[x] Start with the logic (Booking) DEMO
+[x] Connect with the MySQL
+[x] Start with the login system (JUST MAKE IT WORK)
+[x] Try to build the project and see if the production environment is still working. #1
+[x] Gather some opinions about the page
+[x] Do the changes needed, after the feedback
+[x] Try to build the project and see if the production environment is still working. #2
+[] Make the seed
+[~] Clean the code
+[] Try to build the project and see if the production environment is still working. #3
+
+# Feedback Review
+
+[x] When the driver is logged can't book.
+[x] Change reservation logic, not clickable when Cancelled and Fulfilled.
+[x] Login and register page the Back menu is always in English change it in Spanish also
+[x] Register fix the error messages in both lang and BookNow reservations also
+[x] Make the profile editable for name, number, birthDate and gender. --> Problem with session
+[x] Make the Stats functional with our data
+[x] Dashboard Client add the book now button
+
+[x] Make a procedure for when reservations are updated CLOSE those reservations where there status is PENDING or CONFIRMED to CLOSED taking care teh current time.
+[] Reservation contactNumber need validation.
+[x] Make a loading page when people try to log in takes time to answer.
+[x] Make the Navbar static and that doesn't disappear.
+[] When the client in logged in show different message on the portal and make 2 buttons Dashboard and Book now.
+[] Make the tables available to filter.
+[x] Make the reservations table when logged responsive, show 3 when screen is small and show 5 when is bigger.
+[] For the reservations make the From and Destination to autocomplete.
+[] Icon when logged in Menu Profile doesn't work.
+[x] All reservations when you are logged like a driver shows contact driver.
+
+[] Create a basic message with name and ref and the status for WhatAPP contact
+
+# Finals steps
+
+[] Do the DockerFile configurations needed
+[] Publish the code

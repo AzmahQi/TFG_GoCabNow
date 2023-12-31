@@ -1,6 +1,5 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-
 // Card component to wrap each counter
 const CounterCard = ({ title, count }) => (
   <div className={`primary p-4 rounded-md shadow-md text-center`}>

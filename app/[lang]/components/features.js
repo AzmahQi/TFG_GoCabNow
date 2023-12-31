@@ -1,10 +1,7 @@
 // Features.js
-
 import FeatureCard from '@/app/[lang]/components/featureCard';
-
 const Features = ({ content }) => {
   const features = content;
-
   return (
     <section id='features' className="secondary shadow-md px-6 py-16 w-full">
       <div className="container mx-auto text-center">

@@ -1,14 +1,11 @@
 "use client";
 import { signIn } from "next-auth/react";
-
 import { useRouter } from "next/navigation";
-
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { toast } from "react-toastify";
 
 export default function LoginForm({ data }) {
   const router = useRouter();
-
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -73,7 +70,6 @@ export default function LoginForm({ data }) {
         password: formData.password,
       });
 
-      console.log(signInData);
       if (signInData.ok) {
         toast.success(data.valSuccess, {
           position: "top-center",
@@ -98,18 +94,18 @@ export default function LoginForm({ data }) {
           progress: undefined,
           theme: "light",
         });
+      } else {
+        toast.error(data.valError, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       }
-    } else {
-      toast.error(data.valError, {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
     }
     setIsLoading(false);
   };

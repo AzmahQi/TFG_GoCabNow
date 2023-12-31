@@ -46,29 +46,17 @@ export function middleware(request) {
 
   if (isMissingLocalePrefix(pathname, i18n.locales)) {
     try {
-
-      const cookies = parseCookies(request);
-      const existingLang = request.cookies.get('lang').value;
-      console.log("Middle: "+existingLang);
-      let locale = getLocale(request);
-      let redirectPath = null
+      let existingLang = request.cookies.get('lang');
+      let redirectPath;
       // If the lang cookie is not set, or the path is missing the locale prefix
       if (!existingLang) {
-        locale = getLocale(request);
+        const locale = getLocale(request);
         redirectPath = constructRedirectPath(locale, pathname);
-        console.log("Chosen language1:", locale);
-        // Set a cookie with the chosen language
-        setCookie({ res: request.res }, "lang", locale, {
-          maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
-          path: "/",
-        });
-      }else{
-        redirectPath = constructRedirectPath(existingLang, pathname);
-        console.log("Chosen language2:", existingLang, redirectPath);
-
+        return NextResponse.redirect(new URL(redirectPath, request.url));
+      }else {
+        redirectPath = constructRedirectPath(existingLang.value, pathname);
+        return NextResponse.redirect(new URL(redirectPath, request.url));
       }
-
-      return NextResponse.redirect(new URL(redirectPath, request.url));
 
       // If the lang cookie is already set, proceed without redirection
     } catch (error) {

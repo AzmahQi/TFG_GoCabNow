@@ -1,0 +1,27 @@
+version: '3'
+services:
+  tfg:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: nextjs
+      MYSQL_DATABASE: gocabnow
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    ports:
+      - "3306:3306"
+
+  adminer:
+    image: adminer
+    ports:
+      - "8080:8080"
+    depends_on:
+      - tfg
+
+  nextjs-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - tfg

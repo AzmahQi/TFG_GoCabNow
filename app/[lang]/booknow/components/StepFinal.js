@@ -1,12 +1,13 @@
-export default function StepFinal({ reservationRef }) {
+export default function StepFinal({ content, reservationRef }) {
   return (
     <div>
-      <h1 className="mt-2 txt-xl font-bold">Step Final: Success Result</h1>
+      <h1 className="mt-2 txt-xl font-bold">{content.title}</h1>
       <div className="my-4">
         <p>
-          This is your reservation reference: <strong>{reservationRef}</strong>.
-          With this reference, a taxi driver will contact you via WhatsApp.
+          {content.refText} 
+          <p className="font-bold">{reservationRef}</p>
         </p>
+        <p>{content.secondaryText}</p>
       </div>
     </div>
   );

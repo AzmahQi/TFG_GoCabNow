@@ -1,7 +1,9 @@
 {   
     "lang": "ES",
+    "loading": "Cargando",
     "companyName": "GoCabNow",
     "navigation":{
+      "back": "Ir Atrás",
       "signInButton": "Iniciar sesión",
         "menu":[
             { "name": "Inicio", "href": "/", "id":"home" },
@@ -15,6 +17,10 @@
             { "name": "Dashboard", "href": "/dashboard" },
             { "name": "Profile", "href": "/dashboard/profile" },
             { "name": "Sign Out", "href": "logout" }
+          ],
+          "dashboardMenu":[
+            { "name": "Inicio", "href": "/", "icon": "🏠", "current": false },
+            { "name": "Dashboard", "href": "/dashboard", "icon": "📁", "current": true }
           ]
     },
     "stats":{
@@ -211,30 +217,112 @@
         "valError": "¡Vaya! Algo salió mal."
     },
     "registerForm": {
-      "title": "Registro",
+      "title": "Registrarse",
       "name": "Nombre",
       "namePlaceHolder": "Ingrese su nombre",
-      "nameRequired": "Se requiere el nombre",
+      "nameRequired": "El nombre es obligatorio",
       "email": "Correo electrónico",
       "emailPlaceHolder": "Ingrese su correo electrónico",
-      "emailRequired": "Se requiere el correo electrónico",
-      "invalidFormat": "Formato de correo electrónico inválido",
+      "emailRequired": "El correo electrónico es obligatorio",
+      "invalidFormat": "Formato de correo electrónico no válido",
+      "birthDate": "Fecha de nacimiento",
+      "birthDateRequired": "Por favor, ingrese una fecha de nacimiento válida",
+      "gender": "Género",
+      "genderRequired": "Por favor, seleccione un género",
+      "gMale": "Masculino",
+      "gFemale": "Femenino",
+      "gOther": "Otro",
       "contactNumber": "Número de contacto (WhatsApp requerido)",
       "cnPlaceHolder": "Ingrese su número de contacto",
-      "cnRequired": "Se requiere el número de contacto",
+      "cnRequired": "El número de contacto debe tener exactamente 9 dígitos",
       "password": "Contraseña",
       "passwordPlaceHolder": "Ingrese su contraseña",
-      "passwordRequired": "Se requiere la contraseña",
+      "passwordRequired": "La contraseña es obligatoria",
       "confirmPassword": "Confirmar contraseña",
       "confirmPassPlaceHolder": "Ingrese su contraseña",
-      "confirmPassRequired": "Se requiere la contraseña",
+      "confirmPassRequired": "La contraseña es obligatoria",
       "confirmPassMatch": "Las contraseñas no coinciden",
       "buttonText": "Registrarse",
       "buttonLoadingText": "Cargando...",
       "questionToSignIn": "¿Ya tienes una cuenta?",
       "toSingIn": "Iniciar sesión",
-      "valSuccess": "Registro exitoso.",
-      "valInvalid": "Error en el registro: El correo electrónico ya existe.",
-      "valError": "Error durante el registro: "
+      "valSuccess": "Registro exitoso",
+      "errors": [
+        {"message": "Error en el registro: Ya existe un usuario con este correo electrónico"},
+        {"message": "Error en el registro: Ya tenemos una cuenta con el número que ingresaste. Por favor, prueba con otro número"}
+    ],
+      "valInvalid": "Error en el registro: El correo electrónico ya existe",
+      "valError": "Ocurrió un error inesperado. Por favor, inténtalo de nuevo más tarde"
+    },
+  "bookNow": {
+    "stepA": {
+      "title": "Paso A: Información de Identidad del Cliente",
+      "name": "Nombre",
+      "nameRequired": "El nombre es obligatorio",
+      "contactNumber": "Número de contacto",
+      "cnRequired": "El número de contacto es obligatorio",
+      "buttonNextText": "Siguiente"
+    },
+    "stepB": {
+      "title": "Paso B: Información de Destino",
+      "from": "Desde",
+      "fromRequired": "Desde es obligatorio",
+      "to": "Destino",
+      "toRequired": "El destino es obligatorio",
+      "dateTime": "Fecha y hora",
+      "dtRequired": "La fecha y hora son obligatorias",
+      "passengers": "Número de pasajeros",
+      "luggage": "Equipaje",
+      "buttonNextText": "Siguiente",
+      "buttonPrevText": "Anterior"
+    },
+    "stepC": {
+      "title": "Paso C: Confirmar Datos del Formulario",
+      "buttonSubmitText": "Enviar"
+    },
+    "stepFinal": {
+      "title": "Paso Final: Resultado Exitoso",
+      "refText": "Esta es la referencia de su reserva:",
+      "secondaryText": "Con esta referencia, un conductor de taxi se pondrá en contacto con usted a través de WhatsApp."
+    }
+  },
+  
+  "dashboard": {
+    "welcome": "Bienvenido",
+    "viewProfile": "Ver Perfil",
+    "pendingReservations": "Reservas Pendientes",
+    "currentReservations": "Reservas Actuales",
+    "allReservations": "Todas las Reservas",
+    "reservationCard": {
+      "noReservations": "No hay reservas disponibles.",
+      "reference": "Referencia",
+      "date": "Fecha",
+      "pickupLocation": "Ubicación de Recogida",
+      "destination": "Destino",
+      "status": "Estado",
+      "passengers": "Pasajeros",
+      "luggage": "Maletas",
+      "contactDriver": "Contacta al conductor",
+      "contactClient": "Contacta al cliente",
+      "statusEnums":{
+        "PENDING": "PENDIENTE",
+        "CONFIRMED": "CONFIRMADO",
+        "CANCELLED": "CANCELADO",
+        "FULFILLED": "CUMPLIDO",
+        "CLOSED": "CERRADO"
+      },
+      "driverActions":{
+        "Accept": "Aceptar",
+        "Done": "Hecho",
+        "Cancel": "Cancelar",
+        "Reject": "Rechazar"
+      }
+    },
+    "profileCard":{
+      "birthDay": "Fecha de nacimiento",
+      "email": "Correo electrónico",
+      "gender": "Género"
+    }
   }
+  
 }

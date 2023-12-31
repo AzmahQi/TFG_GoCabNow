@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 
-
-
 const RegisterForm = ({ data }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -18,7 +16,7 @@ const RegisterForm = ({ data }) => {
     password: "",
     confirmPassword: "",
     gender: "",
-    birthDate: '2000-01-01', // Set a default date or handle empty date appropriately
+    birthDate: "2000-01-01", // Set a default date or handle empty date appropriately
   });
 
   const [errors, setErrors] = useState({
@@ -33,10 +31,21 @@ const RegisterForm = ({ data }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    // Handle special transformation for contactNumber
+    if (name === "contactNumber") {
+      const formattedContactNumber = value.replace(/\D/g, ""); // Remove non-digit characters
+      // Limit the length to no more than 9 numbers
+      const truncatedContactNumber = formattedContactNumber.slice(0, 9);
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: truncatedContactNumber,
+      }));
+    } else {
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
+    }
     // Clear the error when the user starts typing
     setErrors((prevErrors) => ({
       ...prevErrors,
@@ -54,7 +63,8 @@ const RegisterForm = ({ data }) => {
       isValid = false;
     }
 
-    if (!formData.contactNumber.trim()) {
+    // Validate contactNumber
+    if (formData.contactNumber.length !== 9) {
       newErrors.contactNumber = data.cnRequired;
       isValid = false;
     }
@@ -81,15 +91,15 @@ const RegisterForm = ({ data }) => {
       isValid = false;
     }
     if (!formData.gender) {
-      newErrors.gender = "Please select a gender";
+      newErrors.gender = data.genderRequired;
       isValid = false;
     }
-  
+
     // Validate birthDate
-  if (!formData.birthDate || isNaN(new Date(formData.birthDate))) {
-    newErrors.birthDate = 'Please enter a valid birthDate';
-    isValid = false;
-  }
+    if (!formData.birthDate || isNaN(new Date(formData.birthDate))) {
+      newErrors.birthDate = data.birthDateRequired;
+      isValid = false;
+    }
     setErrors(newErrors);
     return isValid;
   };
@@ -97,14 +107,18 @@ const RegisterForm = ({ data }) => {
   const handleSubmit = async (e) => {
     toast.dismiss();
     e.preventDefault();
-    console.log(formData);
+    // Add +34 to contactNumber
+    const formattedContactNumber = `+34${formData.contactNumber}`;
     if (validateForm()) {
       try {
         setIsLoading(true);
-        const response = await createUser(formData);
-        console.log(response);
+        // Use the formattedContactNumber in createUser function
+        const response = await createUser({
+          ...formData,
+          contactNumber: formattedContactNumber,
+        });
         if (response.user) {
-          toast.success(response.message, {
+          toast.success(data.valSuccess, {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -114,10 +128,9 @@ const RegisterForm = ({ data }) => {
             progress: undefined,
             theme: "light",
           });
-          router.refresh();
           router.push("/login");
         } else {
-          toast.error(response.message, {
+          toast.error(data.errors[(response.id-1)]?.message, {
             position: "top-center",
             autoClose: 5000,
             hideProgressBar: false,
@@ -130,7 +143,7 @@ const RegisterForm = ({ data }) => {
         }
       } catch (error) {
         console.log("Error during user creation:", error);
-        toast.error("An unexpected error occurred. Please try again later.", {
+        toast.error(data.valError, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
@@ -147,7 +160,7 @@ const RegisterForm = ({ data }) => {
   };
 
   return (
-<div className="flex flex-col items-center justify-center min-h-screen pb-5">
+    <div className="flex flex-col items-center justify-center min-h-screen pb-5">
       <div className="bg-white p-8 shadow-md rounded-md w-96">
         <h2 className="text-2xl text-black font-semibold mb-4">{data.title}</h2>
         <form onSubmit={handleSubmit}>
@@ -172,10 +185,10 @@ const RegisterForm = ({ data }) => {
           </div>
           <div className="mb-4">
             <label
-              htmlFor="birthdate"
+              htmlFor="birthDate"
               className="block text-gray-600 font-medium"
             >
-              Birthdate
+              {data.birthDate}
             </label>
             <input
               type="date"
@@ -192,7 +205,9 @@ const RegisterForm = ({ data }) => {
             )}
           </div>
           <div className="mb-4">
-            <label className="block text-gray-600 font-medium">Gender</label>
+            <label className="block text-gray-600 font-medium">
+              {data.gender}
+            </label>
             <div className="flex items-center space-x-4">
               <label className="flex items-center">
                 <input
@@ -204,7 +219,7 @@ const RegisterForm = ({ data }) => {
                   onChange={handleChange}
                   className="mr-2"
                 />
-                <span className="text-black">Male</span>
+                <span className="text-black">{data.gMale}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -216,7 +231,7 @@ const RegisterForm = ({ data }) => {
                   onChange={handleChange}
                   className="mr-2"
                 />
-                <span className="text-black">Female</span>
+                <span className="text-black">{data.gFemale}</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -228,7 +243,7 @@ const RegisterForm = ({ data }) => {
                   onChange={handleChange}
                   className="mr-2"
                 />
-                <span className="text-black">Other</span>
+                <span className="text-black">{data.gOther}</span>
               </label>
             </div>
             {errors.gender && (
@@ -341,10 +356,13 @@ const RegisterForm = ({ data }) => {
             </button>
           </div>
           <div>
-          <span className="text-sm text-gray-600 ">
-              {data.questionToSignIn} <a className="underline" href="/login">{data.toSingIn} </a>
+            <span className="text-sm text-gray-600 ">
+              {data.questionToSignIn}{" "}
+              <a className="underline" href="/login">
+                {data.toSingIn}{" "}
+              </a>
             </span>
-            </div>
+          </div>
         </form>
       </div>
     </div>

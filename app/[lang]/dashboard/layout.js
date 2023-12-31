@@ -1,23 +1,24 @@
-import { Roboto } from "next/font/google";
-import { i18n } from "@/i18n-config";
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ locale }));
-}
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: "300",
-  display: "swap",
-});
+
+import { Suspense } from 'react';
+import Loading from "@/app/[lang]/components/loading"
+import { getDictionary } from '@/get-dictionary'
+import "@/app/styles/dashboard.css";
+import Provider from "@/app/hooks/context";
 
 export const metadata = {
-  title: "Dashboard | TFG",
-  description: "HAMZA",
+  title: "Dashboard | GCN"
 };
 
-export default function Layout({ children, params }) {
+export default async function Layout({ children, params: { lang } }) {
+  const dictionary = await getDictionary(lang);
   return (
-
-      <body>{children}</body>
+    <Provider>
+      <body>
+      <Suspense fallback={<Loading loading={dictionary.loading} />}>
+        {children}
+      </Suspense>
+      </body>
+    </Provider>
 
   );
 }

@@ -53,8 +53,11 @@ export const authOptions ={
         })
       ],
       callbacks: {
-        async jwt ({token, user}){
-
+        async jwt ({token, user,session, trigger}){
+          if (trigger === "update" && session?.user){
+            user = session.user
+            token.name = session.user.name
+          }
           if (user) {
             return {
               ...token,
@@ -70,7 +73,7 @@ export const authOptions ={
           return {
             ...session,
             user: {
-              ...session,
+              ...session.user,
               contactNumber: token.user.contactNumber,
               profile: token.user.profile,
               role: token.user.role

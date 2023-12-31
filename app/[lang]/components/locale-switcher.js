@@ -1,11 +1,9 @@
 'use client'
-
 import { Listbox, Transition } from '@headlessui/react';
-import { usePathname } from 'next/navigation';
-import { i18n } from '../../../i18n-config';
-import { useRouter } from 'next/navigation';
-import React, { useState, Fragment } from 'react';
-import { setCookie } from 'nookies';
+import { usePathname, useRouter } from 'next/navigation';
+import { i18n } from '@/i18n-config';
+import React, { useState } from 'react';
+import { setCookie, parseCookies } from 'nookies';
 
 const pathSplitter = (path) => {
   let i = 2;
@@ -17,6 +15,7 @@ const pathSplitter = (path) => {
   return newPath === '' ? '/' : newPath;
 };
 
+
 const updateLangCookie = (selectedLang) => {
   setCookie(null, 'lang', selectedLang, {
     maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
@@ -25,6 +24,8 @@ const updateLangCookie = (selectedLang) => {
 };
 
 export default function LocaleSwitcher() {
+
+
   const router = useRouter();
   const pathName = usePathname();
   const activeLocale = pathName.split('/')[1];
@@ -32,6 +33,7 @@ export default function LocaleSwitcher() {
 
   const [selectedLocale, setSelectedLocale] = useState(activeLocale);
   const inactiveLocales = i18n.locales.filter((locale) => locale !== activeLocale);
+
 
   const handleLanguageChange = (newLocale) => {
     setSelectedLocale(newLocale);
@@ -69,7 +71,6 @@ export default function LocaleSwitcher() {
             ))}
           </Listbox.Options>
         </Transition>
-
     </Listbox>
   );
 }

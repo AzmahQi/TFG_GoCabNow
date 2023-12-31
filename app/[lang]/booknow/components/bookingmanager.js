@@ -27,7 +27,7 @@ const initialFormData = {
 
 const stepsArray = ["A", "B", "C"];
 
-export default function BookingManager({ showSteps, session }) {
+export default function BookingManager({ content, showSteps, session }) {
   //Setting states for Step and also Data
 
   const [step, setStep] = useState("A");
@@ -65,25 +65,29 @@ export default function BookingManager({ showSteps, session }) {
   const handleChangeInput = (event) => {
     const fieldName = event.target.name;
     let fieldValue;
-
     fieldValue = event.target.value;
-
     // Here is where im actually updating the data
-    setFormData({ ...formData, [fieldName]: fieldValue });
+   setFormData({ ...formData, [fieldName]: fieldValue });
   };
 
   // Method to do the final operation
 
-  const handleSubmitFormData = async (e) => {
-    if (!formData.contactNumber) {
-      alert("Error! Contact number not added");
-    } else {
-      const reservation = await createReservation(formData);
-
+// Method to do the final operation
+const handleSubmitFormData = async (e) => {
+  const regex = '/^\d{9}$/';
+  if (!regex.test(formData.contactNumber)) {
+    alert("Contact number must be 9 digits");
+  } else {
+    const reservation = await createReservation(formData);
+    if (reservation) {
       setReservationRef(reservation.reservationRef);
       setStep("Final");
+    } else {
+      alert("Error! We couldn't create the reservation correctly!");
     }
-  };
+  }
+};
+
 
   //Method to render the Steps bar
   const renderTopStepNumbers = () => {
@@ -107,14 +111,13 @@ export default function BookingManager({ showSteps, session }) {
   };
 
   return (
-    <>
-
-      <div className="w-[600px] max-w-full px-6 py-1 mx-auto rounded-lg border-2 border-dotted border-sky-100 ">
+      <div className="text-white w-[600px] max-w-full px-6 py-1 mx-auto rounded-lg border-2 border-dotted border-sky-100 ">
         {renderTopStepNumbers()}
 
         {/* Steps */}
         {step === "A" ? (
           <StepA
+            content={content.stepA}
             formData={formData}
             handleChangeInput={handleChangeInput}
             handleNextStep={handleNextStep}
@@ -124,6 +127,7 @@ export default function BookingManager({ showSteps, session }) {
 
         {step === "B" ? (
           <StepB
+          content={content.stepB}
             formData={formData}
             handleChangeInput={handleChangeInput}
             handlePrevStep={handlePrevStep}
@@ -133,17 +137,16 @@ export default function BookingManager({ showSteps, session }) {
 
         {step === "C" ? (
           <StepC
+          content={content}
             formData={formData}
-            handleChangeInput={handleChangeInput}
             handlePrevStep={handlePrevStep}
             handleSubmitFormData={handleSubmitFormData}
           />
         ) : null}
 
         {step === "Final" ? (
-          <StepFinal reservationRef={reservationRef} />
+          <StepFinal content={content.stepFinal} reservationRef={reservationRef} />
         ) : null}
       </div>
-    </>
-  );
+  )
 }

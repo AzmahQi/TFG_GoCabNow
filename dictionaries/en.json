@@ -1,6 +1,8 @@
 {   "lang": "EN",
+    "loading": "Loading",
     "companyName": "GoCabNow",
     "navigation":{
+      "back": "Go back",
       "signInButton": "Sign In",
         "menu":[
             { "name":"Home", "href": "/", "id":"home" },
@@ -14,6 +16,10 @@
             { "name": "Dashboard", "href": "/dashboard"},
             { "name": "Profile", "href": "/dashboard/profile"},
             { "name": "Sign Out", "href": "logout" }
+          ],
+          "dashboardMenu":[
+            { "name": "Home", "href": "/", "icon": "🏠", "current": false},
+            { "name": "Dashboard", "href": "/dashboard", "icon": "📁", "current": true}
           ]
     },
     "stats":{
@@ -218,9 +224,16 @@
     "emailPlaceHolder": "Enter your email",
     "emailRequired": "Email is required",
     "invalidFormat": "Invalid email format",
+    "birthDate": "Birth date",
+    "birthDateRequired": "Please enter a valid birth date",
+    "gender": "Gender",
+    "genderRequired": "Please select a gender",
+    "gMale": "Male",
+    "gFemale": "Female",
+    "gOther": "Other",
     "contactNumber": "Contact Number (WhatsApp required)",
     "cnPlaceHolder": "Enter your contact number",
-    "cnRequired": "Contact number is required",
+    "cnRequired": "Contact number must have exactly 9 digits",
     "password": "Password",
     "passwordPlaceHolder": "Enter your password",
     "passwordRequired": "Password is required",
@@ -231,9 +244,82 @@
     "buttonText": "Sign Up",
     "buttonLoadingText": "Loading...",
     "questionToSignIn": "Already have an account?",
-    "toSingIn": "Sing In",
+    "toSingIn": "Sign In",
     "valSuccess": "Registration successful.",
-    "valInvalid": "Registration failed: Email already exists.",
-    "valError": "Error during registration: "
+    "errors": [
+      {"message": "Registration failed: User with this email already exists"},
+      {"message": "Registration failed: We already have an account with the number you introduced. Please try another number"}
+    ],
+    "valInvalid": "Registration failed: Email already exist",
+    "valError": "An unexpected error occurred. Please try again later"
+    },
+    "bookNow": {
+      "stepA": {
+        "title": "Step A: Customer Identity Info",
+        "name": "Name",
+        "nameRequired": "Name is required",
+        "contactNumber": "Contact Number",
+        "cnRequired":"Contact number is required",
+        "buttonNextText": "Next"
+      },
+      "stepB": {
+        "title": "Step B: Destination Information",
+        "from": "From",
+        "fromRequired": "From is required",
+        "to": "Destination",
+        "toRequired":"Destination is required",
+        "dateTime": "Date time",
+        "dtRequired":"Date time is required",
+        "passengers": "Number of passengers",
+        "luggage": "Luggage",
+        "buttonNextText": "Next",
+        "buttonPrevText": "Prev."
+      },
+      "stepC": {
+        "title": "Step C: Confirm Form data",
+        "buttonSubmitText": "Submit"
+      },
+      "stepFinal": {
+        "title": "Step Final: Success Result",
+        "refText": "This is your reservation reference:",
+        "secondaryText": "With this reference, a taxi driver will contact you via WhatsApp."
+      }
+    },
+    "dashboard": {
+      "welcome": "Welcome",
+      "viewProfile": "View Profile",
+      "pendingReservations": "Pending Reservations",
+      "currentReservations": "Current Reservations",
+      "allReservations": "All Reservations",
+      "reservationCard": {
+        "noReservations": "No reservations available.",
+        "reference": "Reference",
+        "date": "Date",
+        "pickupLocation": "Pickup Location",
+        "destination": "Destination",
+        "status": "Status",
+        "passengers": "Passengers",
+        "luggage": "Luggage",
+        "contactDriver": "Contact driver",
+        "contactClient": "Contact client",
+        "statusEnums":{
+          "PENDING": "PENDING",
+          "CONFIRMED": "CONFIRMED",
+          "CANCELLED": "CANCELLED",
+          "FULFILLED": "FULFILLED",
+          "CLOSED": "CLOSED"
+        },
+        "driverActions":{
+          "Accept": "Accept",
+          "Done": "Done",
+          "Cancel": "Cancel",
+          "Reject": "Reject"
+        }
+      },
+      "profileCard":{
+        "birthDay": "Birth date",
+        "email": "E-mail",
+        "gender": "Gender"
+      }
     }
   }

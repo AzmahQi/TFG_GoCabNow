@@ -1,8 +1,9 @@
 'use client'
-import {Modal, Button} from '@/app/ui/ui'
-import React, { useState } from "react";
+import {Modal, Button} from '@/app/ui'
 import BookNow from '@/app/[lang]/booknow/page'
+import Link from 'next/link'
 export function BigHero( {base, content, session} ) {
+  const isDriver = session?.user?.role === "Driver";
 
   return (
     <div id='home' className="relative shadow-inner isolate px-6 pt-14 lg:px-8 w-full">
@@ -36,15 +37,18 @@ export function BigHero( {base, content, session} ) {
             {content.description}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
-            <Modal
+            {isDriver? <Button className="ml-4">
+            <Link href="/dashboard">Dashboard</Link>
+          </Button>:<Modal
               triggerElement={
                 <Button color="tertiary" className="ml-4">
                   {content.button}
                 </Button>
               }
-              modalContent={<BookNow session={session}/>}
+              modalContent={<BookNow dictionary={base} session={session}/>}
               buttonText="Close"
-            />
+            /> }
+            
           </div>
         </div>
       </div>

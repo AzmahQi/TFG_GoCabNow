@@ -8,8 +8,6 @@ import AboutUs from "@/app/[lang]/components/aboutus"
 import FAQs from "@/app/[lang]/components/faqs"
 import Stats from './components/stats'
 import '@/app/styles/main.css'
-import Login from './login/page'
-import Register from './register/page'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 export default async function Home({ params: { lang } }) {

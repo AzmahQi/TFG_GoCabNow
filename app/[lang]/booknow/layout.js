@@ -1,6 +1,5 @@
 export const metadata = {
-    title: 'BookNow | TFG',
-    description: 'HAMZA',
+    title: 'BookNow | GoCabNow',
   }
   export default function BookNowLayout({ children, params }) {
     return (

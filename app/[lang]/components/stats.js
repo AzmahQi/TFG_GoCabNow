@@ -1,10 +1,12 @@
 
-import StatsCard from "./statsCard";
+import StatsCard from "@/app/[lang]/components/statsCard";
+import { getClientsAndDriversCount, getReservationCount } from "@/lib/db";
 
-const Stats = ({content}) => {
-    let registeredClients = 100;
-    let registeredDrivers = 10;
-    let reservations = 200;
+export default async function Stats ({content})  {
+    const users = await getClientsAndDriversCount()
+    let registeredClients = users.clients;
+    let registeredDrivers = users.drivers;
+    let reservations = await getReservationCount();
     return(
       <section id="stats" className="secondary shadow-md px-6 py-4 w-full">
       <div className="container mx-auto text-center">
@@ -19,4 +21,3 @@ const Stats = ({content}) => {
         </section>
     )
 }
-export default Stats;

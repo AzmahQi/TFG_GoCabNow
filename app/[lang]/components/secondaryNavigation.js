@@ -2,20 +2,14 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import useScrollListener from '@/app/hooks/useScrollListener';
-import useSectionId from '@/app/hooks/sectionId';
-import ImageLoader from '@/app/hooks/imageLoader';
 import Link from 'next/link';
-import { Modal, Button } from '@/app/ui/ui';
-import { Disclosure, Menu, Transition } from '@headlessui/react';
+import { Disclosure} from '@headlessui/react';
 import { usePathname, useRouter } from 'next/navigation';
-import { signIn } from 'next-auth/react';
 import LocaleSwitcher from './locale-switcher';
-import { ProfileMenu } from './navbarComponents';
-import { LogoImage } from '@/app/ui/ui';
+import { LogoImage } from '@/app/ui';
 
-export default function SecondaryNavigation() {
+export default function SecondaryNavigation({data}) {
   const pathname = usePathname();
-  const path = pathname.slice(3);
   const router = useRouter();
 
   const [navClassList, setNavClassList] = useState([]);
@@ -30,9 +24,6 @@ export default function SecondaryNavigation() {
     setNavClassList(_classList);
   }, [scroll.y, scroll.lastY]);
 
-  const goBack = () => {
-    router.back();
-  };
 
   return (
     <Disclosure
@@ -45,7 +36,7 @@ export default function SecondaryNavigation() {
             <div className="relative flex h-16 items-center justify-between">
               <div className="absolute inset-y-0 left-0 flex items-center text-white sm:hidden">
               <Link href="/" passHref>
-                    <span className="text-lg">&larr; Back</span>
+                    <span className="text-lg">&larr; {data.back}</span>
                 </Link>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
@@ -55,7 +46,7 @@ export default function SecondaryNavigation() {
 
                   <div className="flex space-x-1 px-2 py-5 text-white hidden sm:block">
                   <Link href="/" passHref>
-                    <span className="text-lg">&larr; Back</span>
+                    <span className="text-lg">&larr; {data.back}</span>
                 </Link>
                   </div>
 
