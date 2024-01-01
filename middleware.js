@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { i18n } from "./i18n-config";
 import { match as matchLocale } from "@formatjs/intl-localematcher";
 import Negotiator from "negotiator";
-import { setCookie, parseCookies } from "nookies"; // Assuming you have a cookie library like nookies
 export { default } from "next-auth/middleware";
 
 // Function to extract locale from request headers

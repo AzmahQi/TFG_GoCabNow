@@ -20,8 +20,8 @@
 [x] Do the changes needed, after the feedback
 [x] Try to build the project and see if the production environment is still working. #2
 [] Make the seed
-[~] Clean the code
-[] Try to build the project and see if the production environment is still working. #3
+[x] Clean the code
+[x] Try to build the project and see if the production environment is still working. #3
 
 # Feedback Review
 
@@ -34,19 +34,19 @@
 [x] Dashboard Client add the book now button
 
 [x] Make a procedure for when reservations are updated CLOSE those reservations where there status is PENDING or CONFIRMED to CLOSED taking care teh current time.
-[] Reservation contactNumber need validation.
+[x] Reservation contactNumber need validation.
 [x] Make a loading page when people try to log in takes time to answer.
 [x] Make the Navbar static and that doesn't disappear.
 [] When the client in logged in show different message on the portal and make 2 buttons Dashboard and Book now.
 [] Make the tables available to filter.
 [x] Make the reservations table when logged responsive, show 3 when screen is small and show 5 when is bigger.
 [] For the reservations make the From and Destination to autocomplete.
-[] Icon when logged in Menu Profile doesn't work.
+[x] Icon when logged in Menu Profile doesn't work.
 [x] All reservations when you are logged like a driver shows contact driver.
 
-[] Create a basic message with name and ref and the status for WhatAPP contact
+[x] Create a basic message with name and ref and the status for WhatAPP contact
 
 # Finals steps
 
-[] Do the DockerFile configurations needed
-[] Publish the code
+[x] Do the DockerFile configurations needed
+[x] Publish the code

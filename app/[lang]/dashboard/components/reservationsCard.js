@@ -129,9 +129,10 @@ function ReservationsCard({ title, reservations, driver, driverId, data }) {
 export default ReservationsCard;
 function ContactCard({driver, data, name, number, reference}){
    function onHandleClick(){
+    console.log({driver, data, name, number, reference});
     const waURL = "https://web.whatsapp.com/send?phone=" + number + "&text=";
     const waMobileURL = "https://wa.me/" + number + "?text=";
-    let text = "hola"
+    let text = `Hi ${name}, topic booking reference: ${reference}.  `
     if (window.navigator.userAgent.includes('Mobile')) {
       window.open(waMobileURL + text);
   } else {

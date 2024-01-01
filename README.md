@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# GoCabNow
 
-## Getting Started
+GoCabNow is a streamlined web application designed to simplify the taxi booking process through WhatsApp. This mini-application, presented as a OnePage website, facilitates easy and efficient reservations via WhatsApp, offering a hassle-free experience for users.
 
-First, run the development server:
+## Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **WhatsApp Integration:** GoCabNow leverages WhatsApp for a seamless and familiar booking experience. Users can easily make reservations and communicate with the service through the widely used messaging platform.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **User Registration:** Both customers and taxi drivers can register on the platform. This feature enhances the user experience by eliminating the need to repeatedly fill out information for each reservation.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- **Control Panel for Taxi Drivers:** Taxi drivers have access to a dedicated control panel where they can view and manage all their bookings. This central hub enhances efficiency and organization for drivers.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Responsive Design:** The web application is designed to be accessible on both mobile devices and desktop computers, ensuring a consistent and user-friendly experience across various platforms.
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+To use GoCabNow, follow these simple steps:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Visit the Website:** Access the GoCabNow OnePage website through your preferred web browser.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. **Make a Reservation:** Use the intuitive interface to make reservations easily via WhatsApp. The WhatsApp integration streamlines the communication process.
 
-## Deploy on Vercel
+3. **User Registration:** Customers and taxi drivers can register on the platform, providing a personalized and efficient experience.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Control Panel Access:** Taxi drivers can log in to their control panel to view and manage all their bookings, promoting better organization.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Future Development
+
+While the current focus is on creating a functional demonstration with essential features, GoCabNow has the potential for future expansions and enhancements. As the application evolves, new features may be incorporated to further improve the user experience and offer additional functionalities.
+
+Feel free to explore GoCabNow and simplify your taxi booking experience!

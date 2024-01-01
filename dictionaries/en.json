@@ -14,7 +14,6 @@
           ],
           "profileMenu":[
             { "name": "Dashboard", "href": "/dashboard"},
-            { "name": "Profile", "href": "/dashboard/profile"},
             { "name": "Sign Out", "href": "logout" }
           ],
           "dashboardMenu":[

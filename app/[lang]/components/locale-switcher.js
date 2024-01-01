@@ -3,7 +3,7 @@ import { Listbox, Transition } from '@headlessui/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { i18n } from '@/i18n-config';
 import React, { useState } from 'react';
-import { setCookie, parseCookies } from 'nookies';
+import { setCookie } from 'nookies';
 
 const pathSplitter = (path) => {
   let i = 2;

@@ -13,9 +13,7 @@ export const authOptions ={
   },
     providers: [
         CredentialsProvider({
-
           name: "Sign in",
-
           credentials: {
             email: { label: "Email", type: "email", placeholder: "hello@example.com" },
             password: { label: "Password", type: "password" }
@@ -64,9 +62,7 @@ export const authOptions ={
               user
             }
           }
-
           return token
-
         },
         async session ({session,token}) {
 

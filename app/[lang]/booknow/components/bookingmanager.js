@@ -41,7 +41,7 @@ export default function BookingManager({ content, showSteps, session }) {
       setFormData((prevFormData) => ({
         ...prevFormData,
         name: session.user.profile.name,
-        contactNumber: session.user.contactNumber,
+        contactNumber: session.user.contactNumber.replace(/^\+34/, ''),
       }));
     }
   }, [session]);
@@ -74,16 +74,21 @@ export default function BookingManager({ content, showSteps, session }) {
 
 // Method to do the final operation
 const handleSubmitFormData = async (e) => {
-  const regex = '/^\d{9}$/';
+  const regex = /^\d{9}$/;
   if (!regex.test(formData.contactNumber)) {
     alert("Contact number must be 9 digits");
   } else {
-    const reservation = await createReservation(formData);
+    // Add +34 to contactNumber
+    const formattedContactNumber = `+34${formData.contactNumber}`;
+    const reservation = await createReservation({
+      ...formData,
+      contactNumber: formattedContactNumber,
+    });
     if (reservation) {
       setReservationRef(reservation.reservationRef);
       setStep("Final");
     } else {
-      alert("Error! We couldn't create the reservation correctly!");
+      alert("Error! We couldn't create the reservation correctly! Please change the number and try again");
     }
   }
 };
