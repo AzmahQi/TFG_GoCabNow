@@ -95,9 +95,9 @@ CREATE TABLE `Reservation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 INSERT INTO `Reservation` (`id`, `reservationRef`, `reservationDate`, `pickupLocation`, `destination`, `reservationStatus`, `passengers`, `luggage`, `clientId`, `driverId`, `createdAt`, `updatedAt`) VALUES
-(7,	'A88K3SO15N',	'2023-12-28 23:43:28',	'Calle Llacuna1',	'Calle Bac de roda',	'CLOSED',	1,	1,	11,	NULL,	'2023-12-28 23:43:28.000',	'2023-12-28 23:43:28.000'),
+(7,	'A88K3SO15N',	'2023-12-28 23:43:28',	'Passeig de gracia',	'Calle Llacuna',	'CLOSED',	1,	1,	11,	NULL,	'2023-12-28 23:43:28.000',	'2023-12-28 23:43:28.000'),
 (19,	'49YXUGQA8B',	'2023-12-31 15:05:00',	'Hotel Barcelona Princess',	'El Prat, Barcelona (BCN)',	'CLOSED',	1,	3,	11,	NULL,	'2023-12-30 10:55:27.774',	'2023-12-30 10:55:27.772'),
-(23,	'OF37PYPKTC',	'2024-01-10 17:29:25',	'Calle Llacuna1',	'Calle Bac de roda',	'PENDING',	1,	1,	11,	13,	'2023-12-31 16:36:38.000',	'2023-12-31 16:36:38.000'),
+(23,	'OF37PYPKTC',	'2024-01-10 17:29:25',	'Calle Llacuna',	'Calle Bac de roda',	'PENDING',	1,	1,	11,	NULL,	'2023-12-31 16:36:38.000',	'2023-12-31 16:36:38.000'),
 (28,	'S0PHB2FXD2',	'2024-01-30 14:16:00',	'Carrer A Zona Franca',	'Carrer A Zona ',	'CONFIRMED',	1,	0,	40,	NULL,	'2024-01-01 13:16:44.544',	'2024-01-01 13:16:44.542');
 
 DELIMITER ;;
